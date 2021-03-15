@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class P13 {
 
 	public static void main(String[] args) {
-		// 10Áø¼ö 3Áø¼ö·Î º¯È¯ÇÏ±â
+		// 10ì§„ìˆ˜ 3ì§„ìˆ˜ë¡œ ë³€í™˜í•˜ê¸°
 		Scanner std = new Scanner(System.in);
 		System.out.print("input:");
 		int input = std.nextInt();

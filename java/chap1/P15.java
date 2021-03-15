@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class P15 {
 
 	public static void main(String[] args) {
-		// System.out.print()À» ÇÑ¹ø¸¸ ÀÔ·ÂÇØ¼­ 5°³ÀÇ ´Ü¾î¸¦ °¢°¢ ÇÑÁÙ ¾¿ Ãâ·ÂÇÏ½Ã¿À
+		// System.out.print()ì„ í•œë²ˆë§Œ ì…ë ¥í•´ì„œ 5ê°œì˜ ë‹¨ì–´ë¥¼ ê°ê° í•œì¤„ ì”© ì¶œë ¥í•˜ì‹œì˜¤
 		System.out.print("kim\nlee\njohn\nmike\ndaddy");
 	}
 

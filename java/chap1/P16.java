@@ -3,7 +3,7 @@ package first;
 public class P16 {
 
 	public static void main(String[] args) {
-		//´Þ·Â¸¸µé±â
+		//ë‹¬ë ¥ ì¶œë ¥
 		System.out.println("Feb.");
 		System.out.println("Sun\tMon\tTue\tWed\tThu\tFri\tSat");
 		System.out.println("\t1\t2\t3\t4\t5\t6");
