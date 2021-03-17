@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class P16 {
 
 	public static void main(String[] args) {
-		// LCM (ÃÖ¼Ò°ø¹è¼ö)
+		// LCM (ìµœì†Œê³µë°°ìˆ˜)
 		Scanner stdIn = new Scanner(System.in);
 		System.out.print("input number1:");
 		int n = stdIn.nextInt();

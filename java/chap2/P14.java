@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class P14 {
 
 	public static void main(String[] args) {
-		// µÚÁı¾îÁø »ï°¢Çü
+		// ë’¤ì§‘ì–´ì§„ ì‚¼ê°í˜•
 		Scanner stdIn = new Scanner(System.in);
 		System.out.print("input number:");
 		int n = stdIn.nextInt();

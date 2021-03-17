@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class P13 {
 
 	public static void main(String[] args) {
-		// �ﰢ��
+		// 삼각형 출력
 		Scanner stdIn = new Scanner(System.in);
 		System.out.print("input number:");
 		int n = stdIn.nextInt();
