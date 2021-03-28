@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class LandData {
@@ -10,21 +11,23 @@ public class LandData {
 	private HashSet<String> gudong;
 	private HashSet<String> gu;
 	private HashSet<String> dong;
-	
+	private ArrayList<String> gudongA;
+	private ArrayList<String> guA;
+	private ArrayList<String> dongA;
+
 	public String[][] getLandData() {
 		return landData;
 	}
-
-	public HashSet<String> getGudong() {
-		return gudong;
+	public ArrayList<String> getGudongA() {
+		return gudongA;
 	}
 
-	public HashSet<String> getGu() {
-		return gu;
+	public ArrayList<String> getGuA() {
+		return guA;
 	}
 
-	public HashSet<String> getDong() {
-		return dong;
+	public ArrayList<String> getDongA() {
+		return dongA;
 	}
 
 	public void makeLandData() throws IOException{
@@ -57,6 +60,18 @@ public class LandData {
 				this.dong.add(address[i][2]);
 			}
 		}
+		
+		
+		// hashSet to arrayList
+		this.gudongA = new ArrayList<String>(this.gudong);
+		Collections.sort(this.gudongA);
+		
+		this.guA = new ArrayList<String>(this.gu);
+		Collections.sort(this.guA);
+		
+		this.dongA = new ArrayList<String>(this.dong);
+		Collections.sort(this.dongA);
+		
 		reader.close();
 	}
 

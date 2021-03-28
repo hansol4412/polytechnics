@@ -9,6 +9,7 @@ public class PrintMenu {
 	public static Scanner std = new Scanner(System.in);
 	public static ArrayList<String> printDong = new ArrayList<String>();
 	public static ArrayList<String> printApartMent = new ArrayList<String>();
+	public static ArrayList<String> printApartMentInformation = new ArrayList<String>();
 	public static Iterator<String> iterator; 
 	public static LandData ld = new LandData();
 	public static CriminalData cd = new CriminalData();
@@ -16,24 +17,26 @@ public class PrintMenu {
 	public static AttractionData ad = new AttractionData();
 	public static Sort s = new Sort();
 	
+	//구 출력
 	public static void printGu() throws IOException{
 		ld.makeLandData();
-		Iterator<String> iter = ld.getGu().iterator();
-		while(iter.hasNext()) {
-		    System.out.println(iter.next());
+		for(int i=0; i<ld.getGuA().size(); i++) {
+			System.out.println(i+1+". "+ld.getGuA().get(i));
 		}
 		System.out.print("input name of gu that you want to find -> ");
 	}
 	
+	// 구 정보 출력
 	public void printInformationGu(String gu) throws IOException{
 		cd.makeCriminalData();
 		rd.makeRestaurantData();
 		ad.makeAttractionData();
-		System.out.println("# " + gu +" # " );
+		int guNum = Integer.parseInt(gu);
+		System.out.println("# " + ld.getGuA().get(guNum-1) +" # " );
 		
 		//Attraction data
 		for(int i =1; i<ad.getAttractionData().length; i++) {
-			if(ad.getAttractionData()[i][0].equals(gu)) {
+			if(ad.getAttractionData()[i][0].equals(ld.getGuA().get(guNum-1))) {
 				System.out.println("명소 : "+ ad.getAttractionData()[i][1] + " , "+ ad.getAttractionData()[i][2] +" , "+ ad.getAttractionData()[i][3] 
 						+" , "+ ad.getAttractionData()[i][4] + " , "+ ad.getAttractionData()[i][5]);
 			}
@@ -41,7 +44,7 @@ public class PrintMenu {
 		
 		//restaurant data
 		for(int i =1; i<rd.getRestaurantData().length; i++) {
-			if(rd.getRestaurantData()[i][0].equals(gu)) {
+			if(rd.getRestaurantData()[i][0].equals(ld.getGuA().get(guNum-1))) {
 				System.out.println("맛집 : "+ rd.getRestaurantData()[i][1] + " , "+ rd.getRestaurantData()[i][2] +" , "+ rd.getRestaurantData()[i][3] 
 						+" , "+ rd.getRestaurantData()[i][4] + " , "+ rd.getRestaurantData()[i][5]);
 			}
@@ -49,7 +52,7 @@ public class PrintMenu {
 		
 		//criminal data
 		for(int i =1; i<cd.getCriminalData().length; i++) {
-			if(cd.getCriminalData()[i][0].equals(gu)) {
+			if(cd.getCriminalData()[i][0].equals(ld.getGuA().get(guNum-1))) {
 				System.out.println("살인 : "+ cd.getCriminalData()[i][1] + "회, 강도 : "+ cd.getCriminalData()[i][2] +"회, 강간 : "+ cd.getCriminalData()[i][3] 
 						+"회, 절도 : "+ cd.getCriminalData()[i][4] + "회, 폭력 : "+ cd.getCriminalData()[i][5] + "회, 교통사고 : "+ cd.getCriminalData()[i][6]+"회  (최근 3년 간, 연 사건 발생 평균 건수)");
 			}
@@ -59,11 +62,13 @@ public class PrintMenu {
 	
 	public void printDong(String gu) throws IOException{
 		ld.makeLandData();
-		iterator = ld.getGudong().iterator();
+		int guNum = Integer.parseInt(gu);
+		
+		iterator = ld.getGudongA().iterator();
 		int flag = 0;
 		while(iterator.hasNext()) {
 			String a = iterator.next();
-			if(a.contains(gu)) {
+			if(a.contains(ld.getGuA().get(guNum-1))) {
 				flag =1;
 				String[] selectDong = a.split(" ");
 				printDong.add(selectDong[1]);
@@ -71,11 +76,12 @@ public class PrintMenu {
 				continue;
 			}
 		}
+		
 		if(flag==0) {
 			System.out.println("please check name of Gu");
 		} else {
 			for(int i=0; i<printDong.size(); i++) {
-				System.out.println(printDong.get(i));
+				System.out.println(i+1+". "+printDong.get(i));
 			}
 			System.out.print("input name of dong that you want to find -> ");
 		}
@@ -83,7 +89,8 @@ public class PrintMenu {
 	
 	public void printApartment(String dong) throws IOException{
 		ld.makeLandData();
-		System.out.println("# " + dong +" # " );
+		int dongNum = Integer.parseInt(dong);
+		System.out.println("# " + printDong.get(dongNum-1) +" # " );
 		System.out.println("S: if you want to sort on the basis");
 		System.out.println("F: if you want to find information of apartment ");
 		System.out.print("->");
@@ -99,12 +106,12 @@ public class PrintMenu {
 			);
 			System.out.print("->");
 			String sortNum = std.next();
-			s.sort(dong,sortNum);
+			s.sort(printDong.get(dongNum-1),sortNum);
 			printApartment(dong);
 		} else {
 			int flag = 0;
 			for(int i=1; i<ld.getLandData().length; i++) {
-				if(ld.getLandData()[i][0].contains(dong)) {
+				if(ld.getLandData()[i][0].contains(printDong.get(dongNum-1))) {
 					flag=1;
 				} else {
 					continue;
@@ -120,22 +127,56 @@ public class PrintMenu {
 	
 	public void printInformationApart(String dong, String apart) throws IOException{
 		ld.makeLandData();
-		int flag = 0;		
-		for(int i=1; i<ld.getLandData().length; i++) {
-			if(ld.getLandData()[i][0].contains(dong) && ld.getLandData()[i][1].contains(apart)) {
-				flag=1;
-				System.out.println("아파트 명: " + ld.getLandData()[i][1]);
-				System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
-				System.out.println("세대수: " + ld.getLandData()[i][3]+"명");
-				System.out.println("사용승인일: " + ld.getLandData()[i][4]);
-				System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
-				System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
-				System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
-				System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
-				System.out.println("학교: " + ld.getLandData()[i][9]+"m");
-				System.out.println("마트: " + ld.getLandData()[i][10]+"m");
-			} else {
-				continue;
+		ArrayList<SortData> sd = s.getList();
+		
+		int flag = 0;
+		int dongNum = Integer.parseInt(dong);
+				
+		try { // search for information of apartment by list number after sort
+			
+			for(int i=0; i<sd.size(); i++) {
+				printApartMentInformation.add(sd.get(i).getName());
+			}
+			
+			String apartName = sd.get(Integer.parseInt(apart)-1).getName();
+				
+			for(int i=1; i<ld.getLandData().length; i++) {
+				if(ld.getLandData()[i][0].contains(printDong.get(dongNum-1)) && ld.getLandData()[i][1].contains(apartName)) {
+					flag=1;
+					System.out.println("아파트 명: " + ld.getLandData()[i][1]);
+					System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
+					System.out.println("세대수: " + ld.getLandData()[i][3]+"세대");
+					System.out.println("사용승인일: " + ld.getLandData()[i][4]);
+					System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
+					System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
+					System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
+					System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
+					System.out.println("학교: " + ld.getLandData()[i][9]+"m");
+					System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+				} else {
+					continue;
+				}
+			}
+			
+		} catch(Exception e) { // search for information of apartment by apart's name 
+			
+			String apartName = apart;
+			for(int i=1; i<ld.getLandData().length; i++) {
+				if(ld.getLandData()[i][0].contains(printDong.get(dongNum-1)) && ld.getLandData()[i][1].contains(apartName)) {
+					flag=1;
+					System.out.println("아파트 명: " + ld.getLandData()[i][1]);
+					System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
+					System.out.println("세대수: " + ld.getLandData()[i][3]+"세대");
+					System.out.println("사용승인일: " + ld.getLandData()[i][4]);
+					System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
+					System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
+					System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
+					System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
+					System.out.println("학교: " + ld.getLandData()[i][9]+"m");
+					System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+				} else {
+					continue;
+				}
 			}
 		}
 

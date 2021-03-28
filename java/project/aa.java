@@ -1,28 +1,28 @@
 package project;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class aa {
-	/*
-	for(int i=0; i<ld.getLandData().length; i++) {
-		for(int j=0; j<ld.getLandData()[i].length; j++) {
-			System.out.print(" "+ld.getLandData()[i][j]+" ");
+	public static LandData ld = new LandData();
+	public static void main(String[] args) throws IOException {
+		
+
+		
+		ld.makeLandData();
+		
+		String[][] temp =new String[ld.getLandData().length][];
+
+		
+		for(int i=1; i<ld.getLandData().length; i++) {
+			System.out.println(ld.getLandData()[i][4]);
+			temp[i-1] = ld.getLandData()[i][4].split("\\.");
 		}
-		System.out.println();
-	}
-	*/
-	/*
-	for(int i=0; i<ld.getLandData().length; i++) {
-		for(int j=0; j<ld.getLandData()[i].length; j++) {
-			System.out.print(" "+ld.getLandData()[i][j]+" ");
+		
+		for(int i=0; i<ld.getLandData().length-1; i++) {
+			System.out.println(temp[i][0]);
 		}
-		System.out.println();
+
 	}
-	*/
-	
-	/*for(int i=1; i<ad.getAttractionData().length; i++) {
-		for(int j=0; j<ad.getAttractionData()[i].length; j++) {
-			System.out.print(" "+ad.getAttractionData()[i][j]+" ");
-		}
-		System.out.println();
-	}
-	*/
+
 }
