@@ -1,10 +1,13 @@
 package project;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Find {
+	public static PrintMenu pm = new PrintMenu();
 	public static LandData ld = new LandData();
-	
+	public static Scanner std = new Scanner(System.in);
 	private String gu;
 	private String dong;
 	private String price;
@@ -16,6 +19,9 @@ public class Find {
 	private String child;
 	private String school;
 	private String mart;
+	private ArrayList<String> apartList = new  ArrayList<String>();
+	private ArrayList<String> addressList = new  ArrayList<String>();
+	private ArrayList<String> dongList = new  ArrayList<String>();
 	
 	public Find(String gu, String dong, String price, String family, String date, String bus, String subway,
 			String baby, String child, String school, String mart) {
@@ -38,7 +44,7 @@ public class Find {
 		}
 		
 		if(family.equals("*")) {
-			this.family ="9999";
+			this.family ="99999";
 		} else {
 			this.family = family;
 		}
@@ -102,15 +108,60 @@ public class Find {
 					&& Double.parseDouble(ld.getLandData()[i][5])<=Double.parseDouble(this.bus) && Double.parseDouble(ld.getLandData()[i][6])<=Double.parseDouble(this.subway) 
 					&& Double.parseDouble(ld.getLandData()[i][7])<=Double.parseDouble(this.baby) && Double.parseDouble(ld.getLandData()[i][8])<=Double.parseDouble(this.child)
 					&& Double.parseDouble(ld.getLandData()[i][9])<=Double.parseDouble(this.school) && Double.parseDouble(ld.getLandData()[i][10])<=Double.parseDouble(this.mart)) {
-				System.out.println(ld.getLandData()[i][1]);
+				this.apartList.add(ld.getLandData()[i][1]);
+				this.addressList.add(ld.getLandData()[i][0]);
 				flag=1;
 			} 
 		}
 		
-		if(flag==0) {
-			System.out.println("There is no apartment you want");
+		
+		
+		String[][] dongTemp = new String[this.addressList.size()][];
+
+		for(int i=0; i<this.addressList.size(); i++) {
+			String address = this.addressList.get(i);
+			dongTemp[i] = address.split(" ");
+			this.dongList.add(dongTemp[i][2]);
 		}
 		
+		
+		if(flag==0) {
+			System.out.println("There is no apartment you want");
+		} else {
+			for(int i =0; i<apartList.size(); i++) {
+				System.out.println(i+1+"."+apartList.get(i)+" ("+this.dongList.get(i)+")");
+			}
+			while(true) {
+				System.out.print("input the number you want to find information ->");
+				String findApartInfo = std.next();
+				if(findApartInfo=="q") break;
+				pm.printLine();
+				this.findApartInfo(findApartInfo);
+				pm.printLine();
+			}
+		}
+		
+	}
+	
+	public void findApartInfo(String selectnum) {
+		int num = Integer.parseInt(selectnum);
+		String dong = this.dongList.get(num-1);
+		String apart = this.apartList.get(num-1);
+		
+		for(int i=1; i<ld.getLandData().length; i++) {
+			if(ld.getLandData()[i][0].contains(dong) && ld.getLandData()[i][1].contains(apart)) {
+				System.out.println("아파트 명: " + ld.getLandData()[i][1]);
+				System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
+				System.out.println("세대수: " + ld.getLandData()[i][3]+"세대");
+				System.out.println("사용승인일: " + ld.getLandData()[i][4]);
+				System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
+				System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
+				System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
+				System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
+				System.out.println("학교: " + ld.getLandData()[i][9]+"m");
+				System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+			} 
+		}
 	}
 	
 	

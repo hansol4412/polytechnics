@@ -15,6 +15,7 @@ public class PrintMenu {
 	public static CriminalData cd = new CriminalData();
 	public static RestaurantData rd = new RestaurantData();
 	public static AttractionData ad = new AttractionData();
+	public static PrintMenu print = new PrintMenu();
 	public static Sort s = new Sort();
 	
 	//구 출력
@@ -153,6 +154,13 @@ public class PrintMenu {
 					System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
 					System.out.println("학교: " + ld.getLandData()[i][9]+"m");
 					System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+					System.out.println("--------------------------------------------------------------------------------------------------------------------------");
+					
+					printApartment(dong);
+					String selectapartment = std.next();
+					print.printLine();
+					print.printInformationApart(dong, selectapartment);
+					
 				} else {
 					continue;
 				}

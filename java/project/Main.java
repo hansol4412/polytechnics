@@ -18,7 +18,6 @@ public class Main {
 		}
 	}
 	
-	
 	public static void printMenu() {
 		System.out.print("# MENU\r\n"
 				+"1. 리스트로 찾기\r\n"
@@ -67,6 +66,8 @@ public class Main {
 		print.printLine();
 		Find find = new Find(findgu, finddong, findprice, findfamily, finddate, findbus, findsubway, findbaby, findchild, findschool, findmart);
 		find.findApartment();
+		print.printDot();
+		
 	}
 }
 
