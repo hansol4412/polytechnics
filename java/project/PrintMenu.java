@@ -32,31 +32,36 @@ public class PrintMenu {
 		cd.makeCriminalData();
 		rd.makeRestaurantData();
 		ad.makeAttractionData();
-		int guNum = Integer.parseInt(gu);
-		System.out.println("# " + ld.getGuA().get(guNum-1) +" # " );
-		
-		//Attraction data
-		for(int i =1; i<ad.getAttractionData().length; i++) {
-			if(ad.getAttractionData()[i][0].equals(ld.getGuA().get(guNum-1))) {
-				System.out.println("명소 : "+ ad.getAttractionData()[i][1] + " , "+ ad.getAttractionData()[i][2] +" , "+ ad.getAttractionData()[i][3] 
-						+" , "+ ad.getAttractionData()[i][4] + " , "+ ad.getAttractionData()[i][5]);
+		try {
+			int guNum = Integer.parseInt(gu);
+			System.out.println("# " + ld.getGuA().get(guNum-1) +" # " );
+			
+			//Attraction data
+			for(int i =1; i<ad.getAttractionData().length; i++) {
+				if(ad.getAttractionData()[i][0].equals(ld.getGuA().get(guNum-1))) {
+					System.out.println("명소 : "+ ad.getAttractionData()[i][1] + " , "+ ad.getAttractionData()[i][2] +" , "+ ad.getAttractionData()[i][3] 
+							+" , "+ ad.getAttractionData()[i][4] + " , "+ ad.getAttractionData()[i][5]);
+				}
 			}
-		}
-		
-		//restaurant data
-		for(int i =1; i<rd.getRestaurantData().length; i++) {
-			if(rd.getRestaurantData()[i][0].equals(ld.getGuA().get(guNum-1))) {
-				System.out.println("맛집 : "+ rd.getRestaurantData()[i][1] + " , "+ rd.getRestaurantData()[i][2] +" , "+ rd.getRestaurantData()[i][3] 
-						+" , "+ rd.getRestaurantData()[i][4] + " , "+ rd.getRestaurantData()[i][5]);
+			
+			//restaurant data
+			for(int i =1; i<rd.getRestaurantData().length; i++) {
+				if(rd.getRestaurantData()[i][0].equals(ld.getGuA().get(guNum-1))) {
+					System.out.println("맛집 : "+ rd.getRestaurantData()[i][1] + " , "+ rd.getRestaurantData()[i][2] +" , "+ rd.getRestaurantData()[i][3] 
+							+" , "+ rd.getRestaurantData()[i][4] + " , "+ rd.getRestaurantData()[i][5]);
+				}
 			}
-		}
-		
-		//criminal data
-		for(int i =1; i<cd.getCriminalData().length; i++) {
-			if(cd.getCriminalData()[i][0].equals(ld.getGuA().get(guNum-1))) {
-				System.out.println("살인 : "+ cd.getCriminalData()[i][1] + "회, 강도 : "+ cd.getCriminalData()[i][2] +"회, 강간 : "+ cd.getCriminalData()[i][3] 
-						+"회, 절도 : "+ cd.getCriminalData()[i][4] + "회, 폭력 : "+ cd.getCriminalData()[i][5] + "회, 교통사고 : "+ cd.getCriminalData()[i][6]+"회  (최근 3년 간, 연 사건 발생 평균 건수)");
+			
+			//criminal data
+			for(int i =1; i<cd.getCriminalData().length; i++) {
+				if(cd.getCriminalData()[i][0].equals(ld.getGuA().get(guNum-1))) {
+					System.out.println("살인 : "+ cd.getCriminalData()[i][1] + "회, 강도 : "+ cd.getCriminalData()[i][2] +"회, 강간 : "+ cd.getCriminalData()[i][3] 
+							+"회, 절도 : "+ cd.getCriminalData()[i][4] + "회, 폭력 : "+ cd.getCriminalData()[i][5] + "회, 교통사고 : "+ cd.getCriminalData()[i][6]+"회  (최근 3년 간, 연 사건 발생 평균 건수)");
+				}
 			}
+		}catch(Exception e) {
+			System.out.println("# Check number of Gu #");
+			//printGu();
 		}
 		
 	}
@@ -64,7 +69,6 @@ public class PrintMenu {
 	public void printDong(String gu) throws IOException{
 		ld.makeLandData();
 		int guNum = Integer.parseInt(gu);
-		
 		iterator = ld.getGudongA().iterator();
 		int flag = 0;
 		while(iterator.hasNext()) {
@@ -148,12 +152,43 @@ public class PrintMenu {
 					System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
 					System.out.println("세대수: " + ld.getLandData()[i][3]+"세대");
 					System.out.println("사용승인일: " + ld.getLandData()[i][4]);
-					System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
-					System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
-					System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
-					System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
-					System.out.println("학교: " + ld.getLandData()[i][9]+"m");
-					System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+					
+					if(ld.getLandData()[i][5].equals("0")) {
+						System.out.println("버스 정류장: 1km이내에 없습니다.");
+					} else {
+						System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
+					}
+					
+					if(ld.getLandData()[i][6].equals("0")) {
+						System.out.println("지하철역: 1km이내에 없습니다.");
+					} else {
+						System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
+					}
+					
+					if(ld.getLandData()[i][7].equals("0")) {
+						System.out.println("어린이집: 1km이내에 없습니다.");
+					} else {
+						System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
+					}
+					
+					if(ld.getLandData()[i][8].equals("0")) {
+						System.out.println("유치원: 1km이내에 없습니다.");
+					} else {
+						System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
+					}
+					
+					if(ld.getLandData()[i][9].equals("0")) {
+						System.out.println("학교: 1km이내에 없습니다.");
+					} else {
+						System.out.println("학교: " + ld.getLandData()[i][9]+"m");
+					}
+					
+					if(ld.getLandData()[i][10].equals("0")) {
+						System.out.println("마트: 1km이내에 없습니다.");
+					} else {
+						System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+					}
+					
 					System.out.println("--------------------------------------------------------------------------------------------------------------------------");
 					
 					printApartment(dong);
@@ -176,12 +211,41 @@ public class PrintMenu {
 					System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
 					System.out.println("세대수: " + ld.getLandData()[i][3]+"세대");
 					System.out.println("사용승인일: " + ld.getLandData()[i][4]);
-					System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
-					System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
-					System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
-					System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
-					System.out.println("학교: " + ld.getLandData()[i][9]+"m");
-					System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+					if(ld.getLandData()[i][5].equals("0")) {
+						System.out.println("버스 정류장: 1km이내에 없습니다.");
+					} else {
+						System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
+					}
+					
+					if(ld.getLandData()[i][6].equals("0")) {
+						System.out.println("지하철역: 1km이내에 없습니다.");
+					} else {
+						System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
+					}
+					
+					if(ld.getLandData()[i][7].equals("0")) {
+						System.out.println("어린이집: 1km이내에 없습니다.");
+					} else {
+						System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
+					}
+					
+					if(ld.getLandData()[i][8].equals("0")) {
+						System.out.println("유치원: 1km이내에 없습니다.");
+					} else {
+						System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
+					}
+					
+					if(ld.getLandData()[i][9].equals("0")) {
+						System.out.println("학교: 1km이내에 없습니다.");
+					} else {
+						System.out.println("학교: " + ld.getLandData()[i][9]+"m");
+					}
+					
+					if(ld.getLandData()[i][10].equals("0")) {
+						System.out.println("마트: 1km이내에 없습니다.");
+					} else {
+						System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+					}
 				} else {
 					continue;
 				}

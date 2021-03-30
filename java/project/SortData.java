@@ -18,14 +18,23 @@ public class SortData{
 	}
 
 	public int getPrice() {
+		if(this.price==0) {
+			return 9999999;
+		}
 		return price;
 	}
 
 	public int getFamily() {
+		if(this.family==0) {
+			return 99999;
+		}
 		return family;
 	}
 
 	public int getSubway() {
+		if(this.family==0) {
+			return 1000;
+		}
 		return subway;
 	}
 }

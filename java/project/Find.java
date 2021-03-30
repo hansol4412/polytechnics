@@ -38,7 +38,7 @@ public class Find {
 		}
 		
 		if(price.equals("*")) {
-			this.price ="99999";
+			this.price ="999999";
 		} else {
 			this.price = price;
 		}
@@ -144,23 +144,57 @@ public class Find {
 	}
 	
 	public void findApartInfo(String selectnum) {
-		int num = Integer.parseInt(selectnum);
-		String dong = this.dongList.get(num-1);
-		String apart = this.apartList.get(num-1);
+		try {
+			int num = Integer.parseInt(selectnum);
+			String dong = this.dongList.get(num-1);
+			String apart = this.apartList.get(num-1);
 		
-		for(int i=1; i<ld.getLandData().length; i++) {
-			if(ld.getLandData()[i][0].contains(dong) && ld.getLandData()[i][1].contains(apart)) {
-				System.out.println("아파트 명: " + ld.getLandData()[i][1]);
-				System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
-				System.out.println("세대수: " + ld.getLandData()[i][3]+"세대");
-				System.out.println("사용승인일: " + ld.getLandData()[i][4]);
-				System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
-				System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
-				System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
-				System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
-				System.out.println("학교: " + ld.getLandData()[i][9]+"m");
-				System.out.println("마트: " + ld.getLandData()[i][10]+"m");
-			} 
+		
+			for(int i=1; i<ld.getLandData().length; i++) {
+				if(ld.getLandData()[i][0].contains(dong) && ld.getLandData()[i][1].contains(apart)) {
+					System.out.println("아파트 명: " + ld.getLandData()[i][1]);
+					System.out.println("평단가: " + ld.getLandData()[i][2]+"만원");
+					System.out.println("세대수: " + ld.getLandData()[i][3]+"세대");
+					System.out.println("사용승인일: " + ld.getLandData()[i][4]);
+					if(ld.getLandData()[i][5].equals("0")) {
+						System.out.println("버스 정류장: 1km이내에 없습니다.");
+					} else {
+						System.out.println("버스 정류장: " + ld.getLandData()[i][5]+"m");
+					}
+					
+					if(ld.getLandData()[i][6].equals("0")) {
+						System.out.println("지하철역: 1km이내에 없습니다.");
+					} else {
+						System.out.println("지하철역: " + ld.getLandData()[i][6]+"m");
+					}
+					
+					if(ld.getLandData()[i][7].equals("0")) {
+						System.out.println("어린이집: 1km이내에 없습니다.");
+					} else {
+						System.out.println("어린이집: " + ld.getLandData()[i][7]+"m");
+					}
+					
+					if(ld.getLandData()[i][8].equals("0")) {
+						System.out.println("유치원: 1km이내에 없습니다.");
+					} else {
+						System.out.println("유치원: " + ld.getLandData()[i][8]+"m");
+					}
+					
+					if(ld.getLandData()[i][9].equals("0")) {
+						System.out.println("학교: 1km이내에 없습니다.");
+					} else {
+						System.out.println("학교: " + ld.getLandData()[i][9]+"m");
+					}
+					
+					if(ld.getLandData()[i][10].equals("0")) {
+						System.out.println("마트: 1km이내에 없습니다.");
+					} else {
+						System.out.println("마트: " + ld.getLandData()[i][10]+"m");
+					}
+				} 
+			}
+		}catch(Exception e) {
+			System.out.println("# Check number of the apartment #");
 		}
 	}
 	
