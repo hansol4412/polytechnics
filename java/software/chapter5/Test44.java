@@ -16,19 +16,19 @@ public class Test44 {
 		//상품 1의 정보 (이름, 코드, 가격, 수량)
 		String kopo41_itemname1="퓨어에어 aaaa비말차단용마스크(최고급형)";
 		String kopo41_itemcode1="1031615";
-		int price1 = 6000000;
-		int amount1 = 2;
+		int price1 = 9000000;
+		int amount1 = 10;
 		
 		//상품 2의 정보 (이름, 코드, 가격, 수량)
 		String kopo41_itemname2="슬라이드식명찰";
 		String kopo41_itemcode2="11008152";
-		int price2 = 1000;
-		int amount2 = 10;
+		int price2 = 0;
+		int amount2 = 1;
 		
 		//상품 3의 정보 (이름, 코드, 가격, 수량)
 		String kopo41_itemname3="매직흡착 인테리어후크(알루미늄타입)";
 		String kopo41_itemcode3="1020800";
-		int price3 = 1000;
+		int price3 = 0;
 		int amount3 = 1;
 		
 		Calendar kopo41_calt1 = Calendar.getInstance(); //현재 시간 불러오기
@@ -47,7 +47,7 @@ public class Test44 {
 		System.out.printf("(주)아성다이소_분당서현점\n");
 		System.out.printf("전화:031-702-6016\n");
 		System.out.printf("본사:서울 강남구 남부순환로 2748 (도곡동)\n");
-		System.out.printf("대표:박정부, 신호섭 213-81-52063\n");
+		System.out.printf("대표:박정부,신호섭 213-81-52063\n");
 		System.out.printf("매장:경기도 성남시 분당구 분당로53번길 11 \n(서현동)\n");
 		System.out.printf("=========================================\n");
 		System.out.printf("      소비자중심경영(CCM) 인증기업\n");
@@ -81,15 +81,15 @@ public class Test44 {
 
 		//상품3의 쇼핑 정보 출력 : 상품명 14글자까지만 나오도록 출력, 가격과 총 가격은 숫자에 콤마찍어서 출력하기
 		System.out.printf("[%s]\t\n",kopo41_itemcode3);
-		System.out.printf("        과세합계               %10s\n",kopo41_df.format(kopo41_netPrice)); //세전 가격
-		System.out.printf("\t  부가세               %10s\n",kopo41_df.format(kopo41_tax)); //세금
+		System.out.printf("        과세합계%s\n", kopo41_hanBlankForeword(kopo41_df.format(kopo41_netPrice),25)); //세전 가격
+		System.out.printf("\t  부가세%s\n", kopo41_hanBlankForeword(kopo41_df.format(kopo41_tax),25)); //세금
 		System.out.printf("-----------------------------------------\n");
-		System.out.printf("판매합계\t\t       %-10s\n",kopo41_df.format(kopo41_totalSum)); //세후 가격
+		System.out.printf("판매합계\t\t       %-10s\n",kopo41_hanBlankForeword(kopo41_df.format(kopo41_totalSum),10)); //세후 가격
 		System.out.printf("=========================================\n");
-		System.out.printf("신용카드\t\t       %-10s\n",kopo41_df.format(kopo41_totalSum));
+		System.out.printf("신용카드\t\t       %-10s\n",kopo41_hanBlankForeword(kopo41_df.format(kopo41_totalSum),10));
 		System.out.printf("-----------------------------------------\n");
 		System.out.printf("우리카드\t\t 538720**********\n");
-		System.out.printf("승인번호 77982843(0)  승인금액 %s\n",kopo41_df.format(kopo41_totalSum));
+		System.out.printf("승인번호 77982843(0)  승인금액 %s\n",kopo41_hanBlankForeword(kopo41_df.format(kopo41_totalSum),10));
 		System.out.printf("=========================================\n");
 		System.out.printf("    %s  분당서현점\n",kopo41_sdt2.format(kopo41_calt2.getTime())); //현재 시간 출력
 		System.out.printf("상품 및 기타 문의 : 1522-4400\n");
@@ -100,25 +100,32 @@ public class Test44 {
 		
 	}
 	public static String kopo41_hanBlankForeword(String kopo41_str, int kopo41_num) {
-		String kopo41_strF = kopo41_str; //매개변수에서 받은 문자 변수에 할당하기
-		if(kopo41_strF.length()>10) {
-			kopo41_strF = kopo41_strF.substring(0,10);
-		}
-		byte[] kopo41_byteStrF = kopo41_strF.getBytes(); //문자를 byte로 바꾼다.
-		
-		int kopo41_strLen = kopo41_strF.length(); //문자의 수
-
-		int kopo41_byteLen = kopo41_byteStrF.length; // 문자를 바이트로 변환했을 때 바이트의 수
-	
-		String kopo41_ret_str =""; //초기 문자열 설정
-		
-		for(int kopo41_i=0; kopo41_i<(kopo41_num-kopo41_byteLen);kopo41_i++) { 
+		StringBuilder kopo41_sb = new StringBuilder(); 
+		  //문자열을 더하는 행위에서 매모리 할당과 메모리 해제에서 발생하는 비효율을 방지
+        String kopo41_curChar; // 문자열을 하나씩 나누기 위한 변수
+        int kop41_curLen = 0; //하나씩 나눈 문자열의 총 바이트 수를 구하기 위한 변수
+       
+        for (int i = 0; i < kopo41_str.length(); i++) //문자열 크기 만클 반복문을 돌린다.
+        {
+      	  kopo41_curChar = kopo41_str.substring(i, i + 1); //문자열을 하나씩 나눈다
+      	  if (kop41_curLen + kopo41_curChar.getBytes().length > kopo41_num) {
+      		  //주어진 바이트 총 수 보다 계산한 바이트 수가 커지면 반복문 나가기
+      		  break;
+      	  } else {
+          	  kop41_curLen += kopo41_curChar.getBytes().length; //하나씩 나눈 문자열의 바이트 수를 더한다.
+          	  kopo41_sb.append(kopo41_curChar); // 문자열 더하기
+            } 	  
+        }
+        String kopo41_strF = kopo41_sb.toString(); //매개변수에서 받은 문자 변수에 할당하기
+        
+        String kopo41_ret_str =""; //초기 문자열 설정
+        for(int kopo41_i=0; kopo41_i<(kopo41_num-kop41_curLen);kopo41_i++) {
 			// 지정한 문자길이에서 바이트 배열의 수를 뺀 만큼을 공백을 찍는다
 			kopo41_ret_str=kopo41_ret_str+" ";
-		}
-		kopo41_ret_str=kopo41_ret_str+kopo41_strF;
-		//공백을 추가한 뒤에 문자열을 더한다
-		return kopo41_ret_str; //문자열 리턴
+        }
+        kopo41_ret_str=kopo41_ret_str+kopo41_strF;
+        //공백을 추가한 앞에 문자열을 더한다
+        return kopo41_ret_str; //문자열 리턴
 	}
 	
 	public static String kopo41_hanBlankBackword(String kopo41_str, int kopo41_num) {
@@ -149,5 +156,4 @@ public class Test44 {
         //공백을 추가한 앞에 문자열을 더한다
         return kopo41_ret_str; //문자열 리턴
 	}
-
 }
