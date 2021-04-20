@@ -1,0 +1,72 @@
+package chapter8;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Test4_1 {
+	// 전국 주차장 정보 위도, 경도로 거리 구하기 (최한솔)
+	public static void main(String[] args)  throws IOException{
+		File kopo41_f = new File("C:\\Users\\sol\\Desktop\\한국교통안전공단_전국공영주차장정보_20191224.txt"); 
+		//경로에 있는 파일 가져오기
+		BufferedReader kopo41_br = new BufferedReader(new FileReader(kopo41_f));
+		//BufferedReader로 파일읽고, 생성자로 BufferedReader객체를 넣는다.
+		
+		String kopo41_readtxt; // 파일을 읽기 위한 변수 선언
+		
+		if((kopo41_readtxt = kopo41_br.readLine())== null) {
+			//빈 파일 일 경우
+			System.out.printf("빈 파일 입니다.\n");
+			return;
+		}
+		String[] kopo41_fieldName = kopo41_readtxt.split("\t");
+		//파일을 한 줄씩 읽고 탭으로 구분해서 배열에 집어 넣기 (필드명)
+		
+		double kopo41_lat = 37.3860521; // 분당 폴리텍 위도
+		double kopo41_lng = 127.1214038; // 분당 폴리텍 경도
+		
+		int kopo41_error = 0; // 데이터 갯수 알기 위한 변수 
+		int kopo41_LineCnt = 0; // 데이터 갯수 알기 위한 변수 
+		double kopo41_Maxdist = 0; // 최대 거리
+		String kopo41_MaxArea=""; //최대거리 명칭
+		double kopo41_Mindist = 1000000000; // 최소거리
+		String kopo41_MinArea=""; //최소거리 명칭
+		
+		while((kopo41_readtxt = kopo41_br.readLine())!= null) { 
+			try { //오류가 일어 날 가능 성이 잇는 코드를 적는 부분
+				//kopo41_br.readLine()으로 파일을 한 줄씩 읽는다. 
+				//더 이상 읽을 게 없으면 null을 리턴하여 반복문을 멈춘다
+				String[] kopo41_field = kopo41_readtxt.split("\t");
+				//파일을 한 줄씩 읽고 ","로 구분해서 배열에 집어 넣기 (내용)
+				System.out.printf("**[%d번째 항목]*********************\n",kopo41_LineCnt );
+				System.out.printf("%s : %s\n", kopo41_fieldName[1], kopo41_field[1]); // 주차장 위치
+				System.out.printf("%s : %s\n", kopo41_fieldName[3], kopo41_field[3]); // 위도
+				System.out.printf("%s : %s\n", kopo41_fieldName[2], kopo41_field[2]); // 경도
+				double kopo41_dist= Math.sqrt(Math.pow(Double.parseDouble(kopo41_field[3])-kopo41_lat, 2)
+						+Math.pow(Double.parseDouble(kopo41_field[2])-kopo41_lng, 2));
+				if(kopo41_Maxdist<kopo41_dist) {
+					kopo41_Maxdist=kopo41_dist; // 최대거리
+					kopo41_MaxArea = kopo41_field[6] +" ("+ kopo41_field[1]  +")"; // 최대 거리 명칭
+				}
+				if(kopo41_Mindist>kopo41_dist) {
+					kopo41_Mindist=kopo41_dist; // 최소거리
+					kopo41_MinArea = kopo41_field[6] +" ("+ kopo41_field[1] +")"; //최대거리 명칭
+				}
+				
+				System.out.printf("현재 지점과의 거리 : %f\n", kopo41_dist); // 두 지점 사이의 거리
+				System.out.printf("*************************************\n");
+				//if(kopo41_LineCnt==100) break; // 데이터 갯수가 100개가 되면 반복문 빠져나가기
+				kopo41_LineCnt++; // 데이터 갯수를 알기 위한 변수
+				
+			}catch(Exception e) { //오류가 일어났을 때 반응하는 부분
+				kopo41_error++;
+				continue; // 오류 나면 그 부분 넘어가기
+			}
+		}
+		System.out.println("에러 갯수:"+kopo41_error);
+		System.out.printf("현재 지점과의 최대거리 주차장 => %s : %f\n", kopo41_MaxArea, kopo41_Maxdist); 
+		System.out.printf("현재 지점과의 최소거리 주차장 => %s : %f\n", kopo41_MinArea, kopo41_Mindist); 
+		kopo41_br.close(); //파일 읽기 종료
+	}
+}
