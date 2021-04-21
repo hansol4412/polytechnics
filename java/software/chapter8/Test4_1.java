@@ -30,8 +30,12 @@ public class Test4_1 {
 		int kopo41_LineCnt = 0; // 데이터 갯수 알기 위한 변수 
 		double kopo41_Maxdist = 0; // 최대 거리
 		String kopo41_MaxArea=""; //최대거리 명칭
+		String kopo41_MaxdistW = ""; // 최대 거리 위도
+		String kopo41_MaxdistK = ""; // 최대 거리 경도
 		double kopo41_Mindist = 1000000000; // 최소거리
 		String kopo41_MinArea=""; //최소거리 명칭
+		String kopo41_MindistW = ""; // 최소 거리 위도
+		String kopo41_MindistK = ""; // 최소 거리 경도
 		
 		while((kopo41_readtxt = kopo41_br.readLine())!= null) { 
 			try { //오류가 일어 날 가능 성이 잇는 코드를 적는 부분
@@ -48,10 +52,14 @@ public class Test4_1 {
 				if(kopo41_Maxdist<kopo41_dist) {
 					kopo41_Maxdist=kopo41_dist; // 최대거리
 					kopo41_MaxArea = kopo41_field[6] +" ("+ kopo41_field[1]  +")"; // 최대 거리 명칭
+					kopo41_MaxdistW = kopo41_field[3]; //최대거리 위도
+					kopo41_MaxdistK = kopo41_field[2]; //최대거리 경도
 				}
 				if(kopo41_Mindist>kopo41_dist) {
 					kopo41_Mindist=kopo41_dist; // 최소거리
-					kopo41_MinArea = kopo41_field[6] +" ("+ kopo41_field[1] +")"; //최대거리 명칭
+					kopo41_MinArea = kopo41_field[6] +" ("+ kopo41_field[1] +")"; //최소거리 명칭
+					kopo41_MindistW = kopo41_field[3]; // 최소 거리 위도
+					kopo41_MindistK = kopo41_field[2]; // 최소 거리 경도
 				}
 				
 				System.out.printf("현재 지점과의 거리 : %f\n", kopo41_dist); // 두 지점 사이의 거리
@@ -64,9 +72,12 @@ public class Test4_1 {
 				continue; // 오류 나면 그 부분 넘어가기
 			}
 		}
+		System.out.println("총 "+(kopo41_LineCnt-1)+"개 데이터 처리");
 		System.out.println("에러 갯수:"+kopo41_error);
-		System.out.printf("현재 지점과의 최대거리 주차장 => %s : %f\n", kopo41_MaxArea, kopo41_Maxdist); 
-		System.out.printf("현재 지점과의 최소거리 주차장 => %s : %f\n", kopo41_MinArea, kopo41_Mindist); 
+		System.out.printf("현재 지점과의 최대거리 주차장 => %s : %f   (위도 %s, 경도 %s)\n", 
+				kopo41_MaxArea, kopo41_Maxdist,kopo41_MaxdistW,kopo41_MaxdistK); 
+		System.out.printf("현재 지점과의 최소거리 주차장 => %s : %f   (위도 %s, 경도 %s)\n", 
+				kopo41_MinArea, kopo41_Mindist,kopo41_MindistW,kopo41_MindistK); 
 		kopo41_br.close(); //파일 읽기 종료
 	}
 }
