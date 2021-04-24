@@ -13,13 +13,13 @@ public class FileOutput {
 	public BufferedWriter writer;
 	
 	public FileOutput() throws IOException{
-		File file = new File("C:\\Users\\sol\\Desktop\\exchange.csv");
+		File file = new File(ConstValue.FILEPATH);
 		if(file.exists() ) { //존재하면
 			isFileExist = true; 
 		} else {
 			isFileExist = false;
 		}
-		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\Users\\sol\\Desktop\\exchange.csv",true), "euc-kr"));
+		writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(ConstValue.FILEPATH,true), "euc-kr"));
 	}
 	
 	public void headerWrite() throws IOException{

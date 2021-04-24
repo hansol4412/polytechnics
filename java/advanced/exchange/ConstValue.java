@@ -11,4 +11,6 @@ public class ConstValue {
 	final static double EX_RATE_USD = 1127.30;
 	final static double EX_RATE_EUR = 1327.11;
 	final static double EX_RATE_JPY = 1019.47;
+	
+	final static String FILEPATH = "C:\\Users\\hanso\\OneDrive\\바탕 화면\\exchange.csv";
 }

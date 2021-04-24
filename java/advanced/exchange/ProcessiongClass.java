@@ -88,7 +88,22 @@ public class ProcessiongClass {
 	}
 	
 	
-	
+	public void change(int wonChange) {
+		int orginalWon = wonChange;
+		int c1 = (int)(wonChange/1000);
+		wonChange = wonChange - c1*1000;
+		
+		int d1 = (int)(wonChange/500);
+		wonChange = wonChange - d1*500;
+		
+		int e1 = (int)(wonChange/100);
+		wonChange = wonChange - e1*100;
+		
+		int f1 = (int)(wonChange/50);
+		wonChange = wonChange - f1*50;
+		
+		print.printChange(orginalWon,c1, d1, e1, f1, wonChange);
+	}
 	
 	
 
