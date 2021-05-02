@@ -7,8 +7,8 @@ import java.util.Calendar;
 public class Test11 {
 	// 다페이지 성적집계표
 	static ArrayList<Kopo41_OneRec1> kopo41_ArrayOneRec = new ArrayList<Kopo41_OneRec1>(); //arrayList 생성
-	static final int kopo41_iPerson = 200; // 총 학생의 수
-	static final int kopo41_iPerson_page = 30; //페이지당 저장소의 크기
+	static final int kopo41_iPerson = 11; // 총 학생의 수
+	static final int kopo41_iPerson_page = 3; //페이지당 저장소의 크기
 	public static int kopo41_pageNum =1; //페이지 번호
 	
 	static int kopo41_sumKor=0; // 국어 접수 누적 총합
@@ -61,9 +61,9 @@ public class Test11 {
 	public static void kopo41_dataSet() {
 		for(int kopo41_i=0; kopo41_i<kopo41_iPerson; kopo41_i++) {
 			String kopo41_name = String.format("홍길%02d", kopo41_i+1); //이름만들기
-			int kopo41_kor = (int)(Math.random()*100)+1; //국어점수 만들기
-			int kopo41_eng = (int)(Math.random()*100)+1; //영어점수 만들기
-			int kopo41_mat = (int)(Math.random()*100)+1; //수학점수 만들기
+			int kopo41_kor = (int)(Math.random()*101); //국어점수 만들기
+			int kopo41_eng = (int)(Math.random()*101); //영어점수 만들기
+			int kopo41_mat = (int)(Math.random()*101); //수학점수 만들기
 			kopo41_ArrayOneRec.add(new Kopo41_OneRec1(kopo41_i,kopo41_name,kopo41_kor,kopo41_eng,kopo41_mat));
 			// 객체를 생성해서 어레이리스트에 추가 하기
 		}
@@ -84,9 +84,9 @@ public class Test11 {
 		Kopo41_OneRec1 kopo41_rec; //객체 선언
 		kopo41_rec = kopo41_ArrayOneRec.get(kopo41_i);
 		// 객체에 어레이리스트에서 받을 값을 저장한다.
-		System.out.printf("%3s %7s %6d %6d %6d %8d \t%8f\n",
+		System.out.printf("%3s %7s %6d %6d %6d %8d\t%3d\n",
 				kopo41_rec.kopo41_student_id(),kopo41_rec.kopo41_name(),kopo41_rec.kopo41_kor(),
-				kopo41_rec.kopo41_eng(),kopo41_rec.kopo41_mat(),kopo41_rec.kopo41_sum(),kopo41_rec.kopo41_avg());
+				kopo41_rec.kopo41_eng(),kopo41_rec.kopo41_mat(),kopo41_rec.kopo41_sum(),(int)kopo41_rec.kopo41_avg());
 		kopo41_sumKor+=kopo41_rec.kopo41_kor(); //국어 합계에 함수로 출력된 국어 점수를 누적으로 더한다.
 		kopo41_sumEng+=kopo41_rec.kopo41_eng(); //영어 합계에 함수로 출력된 영어 점수를 누적으로 더한다.
 		kopo41_sumMat+=kopo41_rec.kopo41_mat(); //수학 합계에 함수로 출력된 수학 점수를 누적으로 더한다.

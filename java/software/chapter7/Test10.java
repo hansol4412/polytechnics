@@ -25,9 +25,9 @@ public class Test10 {
 	public static void kopo41_dataSet() {
 		for(int kopo41_i=0; kopo41_i<kopo41_iPerson; kopo41_i++) {
 			String kopo41_name = String.format("홍길%02d", kopo41_i+1); //이름만들기
-			int kopo41_kor = (int)(Math.random()*100); //국어점수 만들기
-			int kopo41_eng = (int)(Math.random()*100); //영어점수 만들기
-			int kopo41_mat = (int)(Math.random()*100); //수학점수 만들기
+			int kopo41_kor = (int)(Math.random()*101); //국어점수 만들기
+			int kopo41_eng = (int)(Math.random()*101); //영어점수 만들기
+			int kopo41_mat = (int)(Math.random()*101); //수학점수 만들기
 			kopo41_ArrayOneRec.add(new Kopo41_OneRec1(kopo41_i,kopo41_name,kopo41_kor,kopo41_eng,kopo41_mat));
 			// 객체를 생성해서 어레이리스트에 추가 하기
 		}
