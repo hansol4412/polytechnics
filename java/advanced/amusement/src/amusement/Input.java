@@ -28,7 +28,7 @@ public class Input {
 	}
 	
 	public String idNum() {
-		//주민번호 입력받기
+		//주민번호 입력받고 검사
 		System.out.println("주민번호를 입력하세요. (\"-\"를 제외하고 입력하시오.)");
 	
 		String idNum = stdIn.next();
