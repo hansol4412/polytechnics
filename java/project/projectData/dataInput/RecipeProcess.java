@@ -24,13 +24,22 @@ public class RecipeProcess {
 		for(int i=0; i<data.size(); i++) {
 			dataArray[i] = data.get(i).split("\t");	
 		}
-		
+		/*
 		for(int i=1; i<data.size(); i++) {
 			for(int j=0; j<dataArray[i].length-1; j++) {
 				System.out.println(dataArray[0][j] +" : "+ dataArray[i][j]);
 			}
 			System.out.println("------------------------------------------------------");
 		}
+		*/
 
+	}
+	
+	public void printProcess(String pn) {
+		for(int i=1; i<data.size(); i++) {
+			if(pn.equals(dataArray[i][0])) {
+				System.out.println(dataArray[i][1]+". "+dataArray[i][2]);
+			}
+		}
 	}
 }

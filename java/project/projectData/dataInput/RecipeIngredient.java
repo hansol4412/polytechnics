@@ -24,14 +24,17 @@ public class RecipeIngredient {
 		for(int i=0; i<data.size(); i++) {
 			dataArray[i] = data.get(i).split(",");	
 		}
-		
-		for(int i=1; i<data.size()-1; i++) {
-			for(int j=0; j<dataArray[i].length-1; j++) {
-				System.out.println(dataArray[0][j] +" : "+ dataArray[i][j]);
-			}
-			System.out.println("------------------------------------------------------");
-		}
 
+	}
+	
+	public void printIngredient(String in) {
+		System.out.print("재료 : ");
+		for(int i=1; i<data.size(); i++) {
+			if(in.equals(dataArray[i][0])) {
+				System.out.print(dataArray[i][2]+"("+dataArray[i][3]+"), ");
+			}
+		}
+		System.out.println("\n");
 	}
 
 }
