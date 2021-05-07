@@ -28,13 +28,22 @@ public class RecipeIngredient {
 	}
 	
 	public void printIngredient(String in) {
+		ArrayList<String> ingredient = new ArrayList<String>(); 
+		
 		System.out.print("재료 : ");
 		for(int i=1; i<data.size(); i++) {
 			if(in.equals(dataArray[i][0])) {
-				System.out.print(dataArray[i][2]+"("+dataArray[i][3]+"), ");
+				ingredient.add(dataArray[i][2]+"("+dataArray[i][3]+")");
 			}
 		}
-		System.out.println("\n");
+		
+		for(int i=0; i<ingredient.size(); i++) { //맨 마지막 항목에 콤마 제거
+			if(i == (ingredient.size()-1)) {
+				System.out.println(ingredient.get(i));
+			} else {
+				System.out.print(ingredient.get(i)+", ");
+			}
+		}
 	}
 
 }

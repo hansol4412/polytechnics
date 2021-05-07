@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RecipeProcess {
 	public static ArrayList<String> data = new ArrayList<String>();
@@ -36,10 +38,38 @@ public class RecipeProcess {
 	}
 	
 	public void printProcess(String pn) {
+		ArrayList<String> process = new ArrayList<String>(); 
+		// 과정 순서가 맞지 않아서 리스트에 넣고 정렬
+		
 		for(int i=1; i<data.size(); i++) {
 			if(pn.equals(dataArray[i][0])) {
-				System.out.println(dataArray[i][1]+". "+dataArray[i][2]);
+				process.add(dataArray[i][1]+". "+dataArray[i][2]);
 			}
 		}
+		process.sort(null);
+		
+		for(int i=0; i<process.size(); i++) {
+			String str = this.erase(process.get(i));
+			System.out.println(str);
+			//정렬된 레시피 순서 출력
+		}
+	}
+	
+	public String erase(String str) { 
+		//레시피 순서에서 쌍따옴표 제거하는 함수
+		String originalStr = "";
+		
+		Pattern pattern = Pattern.compile("[\"](.*?)[\"]");
+		Matcher matcher = pattern.matcher(str);
+		
+		int num = str.indexOf(".", 0);
+		
+		if(matcher.find()) {
+			originalStr =  str.substring(0, num+1)+" "+matcher.group(1);
+		} else {
+			originalStr = str;
+		}
+		
+		return originalStr;
 	}
 }

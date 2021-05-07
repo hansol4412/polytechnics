@@ -54,10 +54,6 @@ public class RecipeBasic {
 		}
 		System.out.println("------------------------------------------------------\n");
 		
-		
-		
-		
-		
 	}
 	
 	public String findrecipe(int n) {
@@ -66,7 +62,7 @@ public class RecipeBasic {
 		for(int i=0; i<recipeName.size(); i++) {
 			if(recipeName.get(n-1).equals(dataArray[i+1][1])) {
 				Recipenum = dataArray[i+1][0];
-				for(int j=0; j<dataArray[i+1].length-1; j++) {
+				for(int j=0; j<dataArray[i+1].length; j++) {
 					System.out.println(dataArray[0][j] +" : "+ dataArray[i+1][j]);
 				}
 			}
