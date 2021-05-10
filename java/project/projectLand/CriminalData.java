@@ -14,7 +14,7 @@ public class CriminalData {
 
 	public void makeCriminalData() throws IOException{
 		ArrayList<String> data = new ArrayList<String>();
-		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ì†”\\Desktop\\ìµœê·¼ 3ë…„ ë²”ì£„ê±´ìˆ˜.csv"));
+		BufferedReader reader = new BufferedReader(new FileReader("ÃÖ±Ù 3³â ¹üÁË°Ç¼ö.csv"));
 		String line;
 		while((line = reader.readLine()) != null) {
 			data.add(line);

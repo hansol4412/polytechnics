@@ -32,7 +32,7 @@ public class LandData {
 
 	public void makeLandData() throws IOException{
 		ArrayList<String> data = new ArrayList<String>();
-		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ì†”\\Desktop\\ìƒ˜í”Œë°ì´í„°.csv"));
+		BufferedReader reader = new BufferedReader(new FileReader("ÇÁ·ÎÁ§Æ® µ¥ÀÌÅÍ.csv"));
 		String line;
 		while((line = reader.readLine()) != null) {
 			data.add(line);
@@ -52,14 +52,45 @@ public class LandData {
 		for(int i=1; i<this.landData.length; i++) {
 			address[i-1] = this.landData[i][0].split(" ");
 		}
+		
 
 		for(int i=0; i<address.length-1; i++) {
-			for(int j=0; j<address[i].length; j++) {
 				this.gudong.add(address[i][1]+" "+address[i][2]);
 				this.gu.add(address[i][1]);
 				this.dong.add(address[i][2]);
+		}
+		/*
+		for(int i=1; i<landData.length-1; i++) {
+			if(landData[i][2].contains(" ")) {
+				landData[i][2]=landData[i][2].replace(" ", "");
+			}
+			if(landData[i][2].equals("")) {
+				landData[i][2] = "0";
+			}
+			if(landData[i][3].equals("")) {
+				landData[i][3] = "0";
+			}
+			if(landData[i][5].equals("")) {
+				landData[i][5] = "0";
+			}
+			if(landData[i][6].equals("")) {
+				landData[i][6] = "0";
+			}
+			if(landData[i][7].equals("")) {
+				landData[i][7] = "0";
+			}
+			if(landData[i][8].equals("")) {
+				landData[i][8] = "0";
+			}
+			if(landData[i][9].equals("")) {
+				landData[i][9] = "0";
+			}
+			if(landData[i][10].equals("")) {
+				landData[i][10] = "0";
 			}
 		}
+	*/
+	
 		
 		
 		// hashSet to arrayList

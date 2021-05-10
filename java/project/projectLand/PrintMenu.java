@@ -18,7 +18,7 @@ public class PrintMenu {
 	public static PrintMenu print = new PrintMenu();
 	public static Sort s = new Sort();
 	
-	//êµ¬ ì¶œë ¥
+	//±¸ Ãâ·Â
 	public static void printGu() throws IOException{
 		ld.makeLandData();
 		for(int i=0; i<ld.getGuA().size(); i++) {
@@ -27,7 +27,7 @@ public class PrintMenu {
 		System.out.print("input name of gu that you want to find -> ");
 	}
 	
-	// êµ¬ ì •ë³´ ì¶œë ¥
+	// ±¸ Á¤º¸ Ãâ·Â
 	public void printInformationGu(String gu) throws IOException{
 		cd.makeCriminalData();
 		rd.makeRestaurantData();
@@ -39,7 +39,7 @@ public class PrintMenu {
 			//Attraction data
 			for(int i =1; i<ad.getAttractionData().length; i++) {
 				if(ad.getAttractionData()[i][0].equals(ld.getGuA().get(guNum-1))) {
-					System.out.println("ëª…ì†Œ : "+ ad.getAttractionData()[i][1] + " , "+ ad.getAttractionData()[i][2] +" , "+ ad.getAttractionData()[i][3] 
+					System.out.println("¸í¼Ò : "+ ad.getAttractionData()[i][1] + " , "+ ad.getAttractionData()[i][2] +" , "+ ad.getAttractionData()[i][3] 
 							+" , "+ ad.getAttractionData()[i][4] + " , "+ ad.getAttractionData()[i][5]);
 				}
 			}
@@ -47,7 +47,7 @@ public class PrintMenu {
 			//restaurant data
 			for(int i =1; i<rd.getRestaurantData().length; i++) {
 				if(rd.getRestaurantData()[i][0].equals(ld.getGuA().get(guNum-1))) {
-					System.out.println("ë§›ì§‘ : "+ rd.getRestaurantData()[i][1] + " , "+ rd.getRestaurantData()[i][2] +" , "+ rd.getRestaurantData()[i][3] 
+					System.out.println("¸ÀÁý : "+ rd.getRestaurantData()[i][1] + " , "+ rd.getRestaurantData()[i][2] +" , "+ rd.getRestaurantData()[i][3] 
 							+" , "+ rd.getRestaurantData()[i][4] + " , "+ rd.getRestaurantData()[i][5]);
 				}
 			}
@@ -55,8 +55,8 @@ public class PrintMenu {
 			//criminal data
 			for(int i =1; i<cd.getCriminalData().length; i++) {
 				if(cd.getCriminalData()[i][0].equals(ld.getGuA().get(guNum-1))) {
-					System.out.println("ì‚´ì¸ : "+ cd.getCriminalData()[i][1] + "íšŒ, ê°•ë„ : "+ cd.getCriminalData()[i][2] +"íšŒ, ê°•ê°„ : "+ cd.getCriminalData()[i][3] 
-							+"íšŒ, ì ˆë„ : "+ cd.getCriminalData()[i][4] + "íšŒ, í­ë ¥ : "+ cd.getCriminalData()[i][5] + "íšŒ, êµí†µì‚¬ê³  : "+ cd.getCriminalData()[i][6]+"íšŒ  (ìµœê·¼ 3ë…„ ê°„, ì—° ì‚¬ê±´ ë°œìƒ í‰ê·  ê±´ìˆ˜)");
+					System.out.println("»ìÀÎ : "+ cd.getCriminalData()[i][1] + "È¸, °­µµ : "+ cd.getCriminalData()[i][2] +"È¸, °­°£ : "+ cd.getCriminalData()[i][3] 
+							+"È¸, Àýµµ : "+ cd.getCriminalData()[i][4] + "È¸, Æø·Â : "+ cd.getCriminalData()[i][5] + "È¸, ±³Åë»ç°í : "+ cd.getCriminalData()[i][6]+"È¸  (ÃÖ±Ù 3³â °£, ¿¬ »ç°Ç ¹ß»ý Æò±Õ °Ç¼ö)");
 				}
 			}
 		}catch(Exception e) {
@@ -103,11 +103,11 @@ public class PrintMenu {
 		
 		if(sort.equals("s")||sort.equals("S")) {
 			System.out.println("#Criteria \r\n"
-					+ "1.í‰ë‹¨ê°€ ë‚®ì€ ìˆœ "
-					+ "2.í‰ë‹¨ê°€ ë†’ì€ ìˆœ "
-					+ "3.ì„¸ëŒ€ìˆ˜ ì ì€ ìˆœ "
-					+ "4.ì„¸ëŒ€ìˆ˜ ë§Žì€ ìˆœ "
-					+ "5.ì§€í•˜ì² ì—­ ê°€ê¹Œìš´ ìˆœ"
+					+ "1.Æò´Ü°¡ ³·Àº ¼ø "
+					+ "2.Æò´Ü°¡ ³ôÀº ¼ø "
+					+ "3.¼¼´ë¼ö ÀûÀº ¼ø "
+					+ "4.¼¼´ë¼ö ¸¹Àº ¼ø "
+					+ "5.ÁöÇÏÃ¶¿ª °¡±î¿î ¼ø"
 			);
 			System.out.print("->");
 			String sortNum = std.next();
@@ -148,45 +148,53 @@ public class PrintMenu {
 			for(int i=1; i<ld.getLandData().length; i++) {
 				if(ld.getLandData()[i][0].contains(printDong.get(dongNum-1)) && ld.getLandData()[i][1].contains(apartName)) {
 					flag=1;
-					System.out.println("ì•„íŒŒíŠ¸ ëª…: " + ld.getLandData()[i][1]);
-					System.out.println("í‰ë‹¨ê°€: " + ld.getLandData()[i][2]+"ë§Œì›");
-					System.out.println("ì„¸ëŒ€ìˆ˜: " + ld.getLandData()[i][3]+"ì„¸ëŒ€");
-					System.out.println("ì‚¬ìš©ìŠ¹ì¸ì¼: " + ld.getLandData()[i][4]);
-					
-					if(ld.getLandData()[i][5].equals("0")) {
-						System.out.println("ë²„ìŠ¤ ì •ë¥˜ìž¥: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					System.out.println("¾ÆÆÄÆ® ¸í: " + ld.getLandData()[i][1]);
+					if(ld.getLandData()[i][2].equals("0") || ld.getLandData()[i][2].equals("")) {
+						System.out.println("Æò´Ü°¡: Á¤º¸°¡ ¾ø½À´Ï´Ù");
 					} else {
-						System.out.println("ë²„ìŠ¤ ì •ë¥˜ìž¥: " + ld.getLandData()[i][5]+"m");
+						System.out.println("Æò´Ü°¡: " + ld.getLandData()[i][2]+"¸¸¿ø");
+					}
+					if(ld.getLandData()[i][3].equals("0") || ld.getLandData()[i][2].equals("")) {
+						System.out.println("¼¼´ë¼ö: Á¤º¸°¡ ¾ø½À´Ï´Ù");
+					} else {
+						System.out.println("¼¼´ë¼ö: " + ld.getLandData()[i][3]+"¼¼´ë");
+					}
+					System.out.println("»ç¿ë½ÂÀÎÀÏ: " + ld.getLandData()[i][4]);
+					
+					if(ld.getLandData()[i][5].equals("0") || ld.getLandData()[i][5].equals("")) {
+						System.out.println("¹ö½º Á¤·ùÀå: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
+					} else {
+						System.out.println("¹ö½º Á¤·ùÀå: " + ld.getLandData()[i][5]+"m");
 					}
 					
-					if(ld.getLandData()[i][6].equals("0")) {
-						System.out.println("ì§€í•˜ì² ì—­: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][6].equals("0") || ld.getLandData()[i][6].equals("")) {
+						System.out.println("ÁöÇÏÃ¶¿ª: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ì§€í•˜ì² ì—­: " + ld.getLandData()[i][6]+"m");
+						System.out.println("ÁöÇÏÃ¶¿ª: " + ld.getLandData()[i][6]+"m");
 					}
 					
-					if(ld.getLandData()[i][7].equals("0")) {
-						System.out.println("ì–´ë¦°ì´ì§‘: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][7].equals("0") || ld.getLandData()[i][7].equals("")) {
+						System.out.println("¾î¸°ÀÌÁý: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ì–´ë¦°ì´ì§‘: " + ld.getLandData()[i][7]+"m");
+						System.out.println("¾î¸°ÀÌÁý: " + ld.getLandData()[i][7]+"m");
 					}
 					
-					if(ld.getLandData()[i][8].equals("0")) {
-						System.out.println("ìœ ì¹˜ì›: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][8].equals("0")|| ld.getLandData()[i][8].equals("")) {
+						System.out.println("À¯Ä¡¿ø: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ìœ ì¹˜ì›: " + ld.getLandData()[i][8]+"m");
+						System.out.println("À¯Ä¡¿ø: " + ld.getLandData()[i][8]+"m");
 					}
 					
-					if(ld.getLandData()[i][9].equals("0")) {
-						System.out.println("í•™êµ: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][9].equals("0") || ld.getLandData()[i][9].equals("")) {
+						System.out.println("ÇÐ±³: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("í•™êµ: " + ld.getLandData()[i][9]+"m");
+						System.out.println("ÇÐ±³: " + ld.getLandData()[i][9]+"m");
 					}
 					
-					if(ld.getLandData()[i][10].equals("0")) {
-						System.out.println("ë§ˆíŠ¸: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][10].equals("0") || ld.getLandData()[i][10].equals("")) {
+						System.out.println("¸¶Æ®: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ë§ˆíŠ¸: " + ld.getLandData()[i][10]+"m");
+						System.out.println("¸¶Æ®: " + ld.getLandData()[i][10]+"m");
 					}
 					
 					System.out.println("--------------------------------------------------------------------------------------------------------------------------");
@@ -207,44 +215,53 @@ public class PrintMenu {
 			for(int i=1; i<ld.getLandData().length; i++) {
 				if(ld.getLandData()[i][0].contains(printDong.get(dongNum-1)) && ld.getLandData()[i][1].contains(apartName)) {
 					flag=1;
-					System.out.println("ì•„íŒŒíŠ¸ ëª…: " + ld.getLandData()[i][1]);
-					System.out.println("í‰ë‹¨ê°€: " + ld.getLandData()[i][2]+"ë§Œì›");
-					System.out.println("ì„¸ëŒ€ìˆ˜: " + ld.getLandData()[i][3]+"ì„¸ëŒ€");
-					System.out.println("ì‚¬ìš©ìŠ¹ì¸ì¼: " + ld.getLandData()[i][4]);
-					if(ld.getLandData()[i][5].equals("0")) {
-						System.out.println("ë²„ìŠ¤ ì •ë¥˜ìž¥: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					System.out.println("¾ÆÆÄÆ® ¸í: " + ld.getLandData()[i][1]);
+					System.out.println("Æò´Ü°¡: " + ld.getLandData()[i][2]+"¸¸¿ø");
+					if(ld.getLandData()[i][2].equals("0") || ld.getLandData()[i][2].equals("")) {
+						System.out.println("Æò´Ü°¡: Á¤º¸°¡ ¾ø½À´Ï´Ù");
 					} else {
-						System.out.println("ë²„ìŠ¤ ì •ë¥˜ìž¥: " + ld.getLandData()[i][5]+"m");
+						System.out.println("Æò´Ü°¡: " + ld.getLandData()[i][2]+"¸¸¿ø");
+					}
+					if(ld.getLandData()[i][3].equals("0") || ld.getLandData()[i][2].equals("")) {
+						System.out.println("¼¼´ë¼ö: Á¤º¸°¡ ¾ø½À´Ï´Ù");
+					} else {
+						System.out.println("¼¼´ë¼ö: " + ld.getLandData()[i][3]+"¼¼´ë");
+					}
+					System.out.println("»ç¿ë½ÂÀÎÀÏ: " + ld.getLandData()[i][4]);
+					if(ld.getLandData()[i][5].equals("0") || ld.getLandData()[i][5].equals("")) {
+						System.out.println("¹ö½º Á¤·ùÀå: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
+					} else {
+						System.out.println("¹ö½º Á¤·ùÀå: " + ld.getLandData()[i][5]+"m");
 					}
 					
-					if(ld.getLandData()[i][6].equals("0")) {
-						System.out.println("ì§€í•˜ì² ì—­: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][6].equals("0")|| ld.getLandData()[i][6].equals("")) {
+						System.out.println("ÁöÇÏÃ¶¿ª: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ì§€í•˜ì² ì—­: " + ld.getLandData()[i][6]+"m");
+						System.out.println("ÁöÇÏÃ¶¿ª: " + ld.getLandData()[i][6]+"m");
 					}
 					
-					if(ld.getLandData()[i][7].equals("0")) {
-						System.out.println("ì–´ë¦°ì´ì§‘: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][7].equals("0")|| ld.getLandData()[i][7].equals("")) {
+						System.out.println("¾î¸°ÀÌÁý: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ì–´ë¦°ì´ì§‘: " + ld.getLandData()[i][7]+"m");
+						System.out.println("¾î¸°ÀÌÁý: " + ld.getLandData()[i][7]+"m");
 					}
 					
-					if(ld.getLandData()[i][8].equals("0")) {
-						System.out.println("ìœ ì¹˜ì›: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][8].equals("0")|| ld.getLandData()[i][8].equals("")) {
+						System.out.println("À¯Ä¡¿ø: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ìœ ì¹˜ì›: " + ld.getLandData()[i][8]+"m");
+						System.out.println("À¯Ä¡¿ø: " + ld.getLandData()[i][8]+"m");
 					}
 					
-					if(ld.getLandData()[i][9].equals("0")) {
-						System.out.println("í•™êµ: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][9].equals("0")|| ld.getLandData()[i][9].equals("")) {
+						System.out.println("ÇÐ±³: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("í•™êµ: " + ld.getLandData()[i][9]+"m");
+						System.out.println("ÇÐ±³: " + ld.getLandData()[i][9]+"m");
 					}
 					
-					if(ld.getLandData()[i][10].equals("0")) {
-						System.out.println("ë§ˆíŠ¸: 1kmì´ë‚´ì— ì—†ìŠµë‹ˆë‹¤.");
+					if(ld.getLandData()[i][10].equals("0")|| ld.getLandData()[i][10].equals("")) {
+						System.out.println("¸¶Æ®: 1kmÀÌ³»¿¡ ¾ø½À´Ï´Ù.");
 					} else {
-						System.out.println("ë§ˆíŠ¸: " + ld.getLandData()[i][10]+"m");
+						System.out.println("¸¶Æ®: " + ld.getLandData()[i][10]+"m");
 					}
 				} else {
 					continue;

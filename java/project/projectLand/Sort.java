@@ -20,6 +20,15 @@ public class Sort {
 		
 		for(int i=1; i<ld.getLandData().length; i++) {
 			if(ld.getLandData()[i][0].contains(dong)) {
+				if(ld.getLandData()[i][2].contains(" ")) {
+					ld.getLandData()[i][2]=ld.getLandData()[i][2].replace(" ", "");
+				}
+				if(ld.getLandData()[i][3].equals("")) {
+					ld.getLandData()[i][3] = "0";
+				}
+				if(ld.getLandData()[i][6].equals("")) {
+					ld.getLandData()[i][6] = "0";
+				}
 				list.add(new SortData(ld.getLandData()[i][1],Integer.parseInt(ld.getLandData()[i][2]),Integer.parseInt(ld.getLandData()[i][3]),Integer.parseInt(ld.getLandData()[i][6])));
 			} else {
 				continue;

@@ -14,7 +14,7 @@ public class RestaurantData {
 	
 	public void makeRestaurantData() throws IOException{
 		ArrayList<String> data = new ArrayList<String>();
-		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ì†”\\Desktop\\ì„œìš¸ì‹œë§›ì§‘.csv"));
+		BufferedReader reader = new BufferedReader(new FileReader("¼­¿ï½Ã¸ÀÁý.csv"));
 		String line;
 		while((line = reader.readLine()) != null) {
 			data.add(line);
@@ -28,3 +28,4 @@ public class RestaurantData {
 		reader.close();
 	}
 }
+

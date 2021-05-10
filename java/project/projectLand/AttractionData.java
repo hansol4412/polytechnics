@@ -14,7 +14,7 @@ public class AttractionData {
 	
 	public void makeAttractionData() throws IOException{
 		ArrayList<String> data = new ArrayList<String>();
-		BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\ì†”\\Desktop\\ì„œìš¸ì‹œëª…ì†Œ.csv"));
+		BufferedReader reader = new BufferedReader(new FileReader("¼­¿ï½Ã¸í¼Ò.csv"));
 		String line;
 		while((line = reader.readLine()) != null) {
 			data.add(line);
