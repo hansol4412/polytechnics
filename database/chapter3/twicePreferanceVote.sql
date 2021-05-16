@@ -1,0 +1,119 @@
+-- use kopo41;
+-- drop table if exists vote;
+-- create table vote(
+-- 	name varchar(20),
+--     age int
+-- );
+
+-- # 앞에는 투표할 트와이스 이름, 뒤에는 연령별 1~9 (10대~90대)
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("채영", rand()*8+1);
+-- insert into vote value ("쯔위", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("채영", rand()*8+1);
+-- insert into vote value ("쯔위", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("채영", rand()*8+1);
+-- insert into vote value ("쯔위", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("채영", rand()*8+1);
+-- insert into vote value ("쯔위", rand()*8+1);
+-- insert into vote value ("채영", rand()*8+1);
+-- insert into vote value ("쯔위", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("채영", rand()*8+1);
+-- insert into vote value ("쯔위", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("채영", rand()*8+1);
+-- insert into vote value ("쯔위", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("지효", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("사나", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("미나", rand()*8+1);
+-- insert into vote value ("다현", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+-- insert into vote value ("나연", rand()*8+1);
+-- insert into vote value ("정연", rand()*8+1);
+-- insert into vote value ("모모", rand()*8+1);
+
+
+
+-- select count(*) from vote;
+-- select name as 이름, count(name) as 득표수, count(name)/(select count(*) from vote)*100 as 득표율
+-- from vote group by name order by count(name) desc; 
+
+-- select age as 나이, count(name) as 득표수, count(name)/(select count(*) from vote where name = '나연')*100 as 득표율
+-- from vote where name = '나연' group by 나이 order by count(age) desc;
+
+select age, count(age) from vote group by age;
