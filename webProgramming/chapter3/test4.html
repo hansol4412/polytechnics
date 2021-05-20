@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>제목줄입니다</title>
+		<script>
+			function call1(){
+				for(var i=0; i<10; i++){
+					document.write(i);
+				}
+			}
+			
+			function call2(){
+				var obj = new Array("빨간색","자동차", "파란색", "기차");
+				var answer = "";
+				for(var j in obj){
+					answer += "" + j + ":" + obj[j];
+					
+				}
+				document.write(answer);
+			}
+			function call3(){
+				document.write("<H2>구구단</H2>");
+				document.write("<TABLE border=0 width=100%>");
+				for(var i=1; i<10; i=i+3){
+					for(var j=1; j<10; j++){
+						document.write("<TR>");
+						document.write("<TD>"+i+" * "+j+" = "+(i*j)+"</TD>");
+						document.write("<TD>"+(i+1)+" * "+j+" = "+((i+1)*j)+"</TD>");
+						document.write("<TD>"+(i+2)+" * "+j+" = "+((i+2)*j)+"</TD>");
+						document.write("</TR>");
+					}
+					document.write("<TR><TD colspan=3><HR></TD></TR>");
+				}
+				document.write("</TABLE>");
+			}
+		</script
+	</head>
+	<body>
+		<script>
+			call1();
+		</script> <br> <br>
+		<script>
+			call2();
+		</script> <br> <br>
+		<script>
+			call3();
+		</script> <br> <br>
+	</body>
+</html>
