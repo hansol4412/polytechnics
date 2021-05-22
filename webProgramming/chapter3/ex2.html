@@ -1,0 +1,109 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>성적표</title>
+		<script>
+			function leadingZeros(n, digits) {
+				  var zero = '';
+				  n = n.toString();
+
+				  if (n.length < digits) {
+					for (var i = 0; i < digits - n.length; i++)
+					  zero += '0';
+				  }
+				  return zero + n;
+			}
+			function main(){
+			
+				var arr = new Array(30);
+				for(var i =0; i<30; i++){
+					var num = leadingZeros((i+1), 3);
+					var name = "홍길"+leadingZeros((i+1), 2);
+					var kor = Math.floor(Math.random() * 101);
+					var eng = Math.floor(Math.random() * 101)
+					var mat = Math.floor(Math.random() * 101)
+					var sum = kor + eng + mat;
+					var avg = (kor + eng + mat)/3;
+					var korsum =0;
+					var engsum =0;
+					var matsum =0;
+					var sumsum =0;
+					var avgsum =0;
+					arr[i] = new Array(num, name, kor, eng, mat, sum, avg);
+				}
+				document.write("<table border=0 width =800>");
+				for(var i =0; i<30; i++){
+					document.write("<tr>");
+					document.write("<td align=left width =40>"+arr[i][0]+"</td>");
+					document.write("<td align=left width =50>"+arr[i][1]+"</td>");
+					document.write("<td align=left width =40>"+arr[i][2]+"</td>");
+					document.write("<td align=left width =40>"+arr[i][3]+"</td>");
+					document.write("<td align=left width =40>"+arr[i][4]+"</td>");
+					document.write("<td align=left width =40>"+arr[i][5]+"</td>");
+					document.write("<td align=left width =100>"+arr[i][6]+"</td>");
+					document.write("</tr>");
+					korsum +=arr[i][2];
+					engsum +=arr[i][3];
+					matsum +=arr[i][4];;
+					sumsum +=arr[i][5];
+					avgsum +=arr[i][6];
+				}
+				document.write("</table>");
+				document.write("<hr width =700 align=left>");
+				document.write("<table border=0 width =800>");
+					document.write("<tr>");
+					document.write("<td align=left width =40>합계:</td>");
+					document.write("<td align=left width =40></td>");
+					document.write("<td align=left width =40>"+korsum+"</td>");
+					document.write("<td align=left width =40>"+engsum+"</td>");
+					document.write("<td align=left width =40>"+matsum+"</td>");
+					document.write("<td align=left width =40>"+sumsum+"</td>");
+					document.write("<td align=left width =100>"+avgsum+"</td>");
+					document.write("</tr>");
+					document.write("<tr>");
+					document.write("<td align=left width =40>평균:</td>");
+					document.write("<td align=left width =40></td>");
+					document.write("<td align=left width =40>"+parseInt(korsum/3)+"</td>");
+					document.write("<td align=left width =40>"+parseInt(engsum/3)+"</td>");
+					document.write("<td align=left width =40>"+parseInt(matsum/3)+"</td>");
+					document.write("<td align=left width =40>"+parseInt(sumsum/3)+"</td>");
+					document.write("<td align=left width =100>"+parseInt(avgsum/3)+"</td>");
+					document.write("</tr>");
+				document.write("</table>");
+				
+
+			}
+			function date(){
+				var d1 = new Date();
+				var year = d1.getFullYear();
+				var month = ("0" + (1 + d1.getMonth())).slice(-2);
+				var day = ("0" + d1.getDate()).slice(-2);
+				var hour = ("0" + d1.getHours()).slice(-2);
+				var minute = ("0" + d1.getMinutes()).slice(-2);
+				var second = ("0" + d1.getSeconds()).slice(-2);
+				var formatD2 = "" + year+ "-" + month +"-"+ day +" "+ hour+":"+ minute+":"+second;
+				document.write(formatD2);
+			}
+		</script>
+	</head>
+	<body>
+	<div style="width: 600px;" align="center">성적 집계표</div>
+	<div style="width: 600px;" align="right">출력 일자 : <script>date()</script></div>
+	<hr width ="700" align="left">
+	<table border=0 width =600> 
+		<tr>
+			<td align=left width ="100">번호</td>
+			<td align=left width ="100">이름</td>
+			<td align=left width ="100">국어</td>
+			<td align=left width ="100">영어</td>
+			<td align=left width ="100">수학</td>
+			<td align=left width ="100">총점</td>
+			<td align=left width ="100">평균</td>
+		</tr>
+	</table>
+	<hr width ="700" align="left">
+		<script>
+		main();
+		</script>
+	</body>
+</html>
