@@ -1,0 +1,49 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<html> 
+<head> 
+	<script LANGUAGE="JavaScript">    
+		function characterCheck(obj){
+		  var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; 
+		  if( regExp.test(obj.value) ){
+			 alert("특수문자는 입력하실수 없습니다.");
+			 obj.value = "";
+		  }
+		}
+	</script>
+</head> 
+<body> 
+
+<h1>성적입력추가</h1> 
+<form method="post" action='insertDB.jsp'> 
+	<table cellspacing=1 width=400 border=0> 
+		<tr>
+			<td width=300></td>
+			<td width=100><input type="submit" value="추가"></td> 
+		</tr>
+	</table>
+
+	<table cellspacing=1 width=400 border=1>
+		<tr>
+			<td width=100><p align=center>이름</p></td>
+			<td width=300><p align=center><input type="text" name ='name' onkeyup="characterCheck(this)" onkeydown="characterCheck(this)" maxlength='8' required /></p></td> 
+		</tr>
+		<tr>
+			<td width=100><p align=center>학번</p></td> 
+			<td width=300><p align=center>자동부여</p></td> 
+		</tr>
+		<tr>
+			<td width=100><p align=center>국어</p></td>
+			<td width=300><p align=center><input type='number' name='korean' value='' min='0' max='100' required ></p></td>
+		</tr>
+		<tr>
+			<td width=100><p align=center>영어</p></td>
+			<td width=300><p align=center><input type='number' name='english' value='' min='0' max='100' required ></p></td>
+		</tr>
+		<tr>
+			<td width=100><p align=center>수학</p></td>
+			<td width=300><p align=center><input type='number' name='mathmatic' value='' min='0' max='100' required ></p></td>
+		</tr>
+	</table>
+</form>
+</body> 
+</html>
