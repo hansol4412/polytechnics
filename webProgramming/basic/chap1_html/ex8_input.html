@@ -1,0 +1,114 @@
+<HTML>
+
+<HEAD>
+    <TITLE>테이블실습3</TITLE>
+</HEAD>
+
+<BODY>
+    <center>
+        <form>
+            <table width="460px" border="0">
+                <tr>
+                    <td>
+                        <center>
+                            <h1 style="color: green;">NAVER</h1>
+                        </center>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>아이디</b></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="id" placeholder="@naver.com"/></td>
+                </tr>
+                <tr>
+                    <td><b>비밀번호</b></td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="passwd"/> </td>
+                </tr>
+                <tr>
+                    <td><b>비밀번호 재확인</b></td>
+                </tr>
+                <tr>
+                    <td><input type="password" name="passwdC"/></td>
+                </tr>
+                <tr>
+                    <td><b>이름</b></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="name"/></td>
+                </tr>
+                <tr>
+                    <td><b>생년월일</b></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="number" name="birthYear" placeholder="년(4자)"/>
+                        <select name="birthMonth">
+                            <option value=""/>월</option>
+                            <option value="1"/>1</option>
+                            <option value="2"/>2</option>
+                            <option value="3"/>3</option>
+                            <option value="4"/>4</option>
+                            <option value="5"/>5</option>
+                            <option value="6"/>6</option>
+                            <option value="7"/>7</option>
+                            <option value="8"/>8</option>
+                            <option value="9"/>9</option>
+                            <option value="10"/>10</option>
+                            <option value="11"/>11</option>
+                            <option value="12"/>12</option>
+                        </select>
+                        <input type="number" name="birthDate" placeholder="일"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>성별</b></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" id="male" name="sex" value="male">
+                        <label for="selectPhone">남자</label>
+                        <input type="radio" id="female" name="sex" value="female">
+                        <label for="selectPhone">여자</label>
+                        <input type="radio" id="no" name="sex" value="no">
+                        <label for="selectPhone">선택안함</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>본인 확인 이메일(선택)</b></td>
+                </tr>
+                <tr>
+                    <td> <input type="text" name="email" placeholder="선택 입력"/></td>
+                </tr>
+                <tr>
+                    <td><b>휴대전화</b></td>
+                </tr>
+                <tr>
+                    <td><select name="phone1">
+                        <option value="대한민국"/>대한민국 +82</option>
+                        <option value="브라질"/>브라질 +55</option>
+                        <option value="우간다"/>우간다 +256</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>
+                    <input type="text" name="phone2" placeholder="전화번호 입력"/>
+                    <input type="button" value="인증번호 받기">
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="phone3" placeholder="인증번호를 입력하세요"/></td>
+                </tr>
+                <tr>
+                    <td><center><input type="submit" value="가입하기"></center></td>
+                </tr>
+            </table>
+        </form>
+    </center>
+</BODY>
+
+</HTML>
+
+<!-- select>option*2 -->
