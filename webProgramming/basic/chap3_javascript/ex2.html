@@ -1,0 +1,35 @@
+<html>
+<head>
+    <script>
+        function number(){ 
+            var num;
+            while(true){
+                num = prompt("숫자를 입력하세요");
+
+                if(!isNaN(num)==false){
+                    alert("숫자를 입력해주세요");
+                }
+
+                if((num<1) || (num>100)){
+                    alert("1이상 100이하를 넣어주세요");
+                }
+
+                if((!isNaN(num)==true) && (num>0) && (num<101)){
+                    break;
+                }
+
+            }
+            for( var i = 1 ; i <= num ; i++ ) {
+                console.log(i);
+            } 
+            alert("완료되었습니다.");
+        }
+    </script>
+</head>
+<body>
+    <script>
+        number();
+    </script>
+</body>
+
+</html>

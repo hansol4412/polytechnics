@@ -1,0 +1,73 @@
+<html>
+<head>
+    <script>
+        function inputText(){ 
+            var text;
+            while(true){
+                text = prompt("입력해주세요");
+                if((text != "") && (text !=null)){
+                    break;
+                }
+                if((text == "") || (text ==null)){
+                    alert("텍스트 값을 입력해주세요")
+                }
+            }
+            document.write(text);
+        };
+
+        function red(){ 
+            alert("빨강색으로 변경합니다");
+            var color = document.getElementById("text");
+            color.style.color ="red";
+        };
+
+        function blue(){ 
+            alert("파랑색으로 변경합니다");
+            var color = document.getElementById("text");
+            color.style.color ="blue";
+        };
+
+        function green(){ 
+            alert("초록색으로 변경합니다");
+            var color = document.getElementById("text");
+            color.style.color ="green";
+        };
+        
+    </script>
+    <style>
+        #container{
+            text-align: center;
+        }
+        #text {
+            padding-top:20%; 
+            padding-bottom:20px;
+            font-size: 100px;
+        }
+        ul {
+            list-style: none;
+            text-align: center;
+            padding-bottom:30%;
+        }
+        ul li {
+            display: inline;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="container">
+        <p id="text">
+            <script>
+                inputText();
+            </script>
+        </p>
+        <ul>
+            <li><button onclick="red()">빨강색</button></li>
+            <li><button onclick="blue()">파랑색</button></li>
+            <li><button onclick="green()">초록색</button></li>
+        </ul>
+    </div>
+</body>
+
+</html>
