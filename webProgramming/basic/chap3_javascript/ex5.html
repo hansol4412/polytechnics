@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #container{
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+        #divS{
+            margin : 10px;
+            width: 150px;
+            height : 50px;
+            border: 1px solid black;
+            color : white;
+            background-color: darkgrey;
+            text-align: center;
+            display:inline-block;
+        }
+    </style>
+    <script>
+        function on(obj){ 
+            
+            var styleYes = obj.style;
+            styleYes.color = "black";
+            styleYes.background = "white";
+        };
+
+        function off(obj){ 
+            var styleNo = obj.style;
+            styleNo.color = "white";
+            styleNo.background = "darkgrey";
+        };
+
+    </script>
+</head>
+<body>
+    <div id="container">
+            <div id="divS" onmouseover ="on(this)"  onmouseout = "off(this)"><p>html</p></div>
+            <div id="divS" onmouseover ="on(this)" onmouseout = "off(this)"><p>css</p></div>
+            <div id="divS" onmouseover ="on(this)" onmouseout = "off(this)"><p>java script</p></div><br>
+
+            <div id="divS" onmouseover="on(this)" onmouseout = "off(this)"><p>html</p></div>
+            <div id="divS" onmouseover="on(this)" onmouseout = "off(this)"><p>css</p></div>
+            <div id="divS" onmouseover="on(this)" onmouseout = "off(this)"><p>java script</p></div><br>
+
+            <div id="divS" onmouseover="on(this)" onmouseout = "off(this)"><p>html</p></div>
+            <div id="divS" onmouseover="on(this)" onmouseout = "off(this)"><p>css</p></div>
+            <div id="divS" onmouseover="on(this)" onmouseout = "off(this)"><p>java script</p></div>
+    </div>
+</body>
+
+</html>

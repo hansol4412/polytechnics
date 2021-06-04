@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #container {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu {
+            width: 100px;
+            height: 30px;
+            background-color: darkgray;
+            color: white;
+            border: 1px solid black;
+            margin-right: 16px;
+            text-align: center;
+            line-height: 180%;
+        }
+    </style>
+    <script>
+        const clickedObjects = new Set();
+
+        function on(obj) {
+            obj.style.color = "black";
+            obj.style.background = "white";
+        }
+
+        function off(obj) {
+            obj.style.color = "white";
+            obj.style.background = "darkgrey";
+        }
+
+        function changeMenu(obj) {   
+            if (clickedObjects.has(obj)) {
+                clickedObjects.delete(obj);
+            } else {
+                clickedObjects.clear();
+                clickedObjects.add(obj);
+            }      
+
+            var menuContents = document.getElementsByClassName('menu');
+
+            for (var i = 0; i < menuContents.length; i++) {
+                if (clickedObjects.has(menuContents[i])) {
+                    on(menuContents[i]);
+                } else {
+                    off(menuContents[i]);
+                }
+            }
+
+        }
+
+    </script>
+</head>
+
+<body>
+    <div id='container'>
+        <div class='menu' onclick='changeMenu(this)'>HTML</div>
+        <div class='menu' onclick='changeMenu(this)'>CSS</div>
+        <div class='menu' onclick='changeMenu(this)'>javascript</div>
+    </div>
+</body>
+
+</html>
