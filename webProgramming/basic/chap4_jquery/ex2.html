@@ -1,0 +1,87 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function inputListItem() {
+            let text = $("#input_text").val();
+            if (text === "") {
+                return;
+            }
+            $("#list").append("<li><strong>최한솔</strong> " + text + "</li>");
+            $("#input_text").val("");
+        }
+    </script>
+    <style>
+        body{
+            font-size: 20px;
+        }
+
+        #container {
+            margin:auto;
+            width: 300px; 
+        }
+
+        #div1 {
+            width: 300px;
+            height: 50px;
+            background-color: rgb(49, 49, 209);
+            text-align: center; 
+        }
+
+        #div1 input {
+            background-color: rgb(49, 49, 209);
+            color: white;
+            border: 1px solid white;
+            margin-top: 15px;
+            width: 200px;
+        }
+
+        #div2 {
+            color: black;
+            width: 300px;
+            background-color: gainsboro;
+            margin-top: 0px;  
+            padding-top: 15px;  
+            padding-bottom: 15px;
+        }
+
+        li{
+            list-style-type: none;
+            padding: 5px;
+            background-color: white;
+            width: 210px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        li strong {
+            font-weight: 800;
+        }
+
+        #div3 {
+            width: 300px;
+            height: 40px;
+            background-color: rgb(49, 49, 209);
+            text-align: center; 
+            padding-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="div1">
+           <input type="text" id="input_text">
+        </div>
+        <div id="div2">
+            <ul id="list">
+                <li><strong>박지성</strong> SBS에서 월드컵보세요!</li>
+                <li><strong>안정환</strong> MBC죠...</li>
+                <li><strong>이영표</strong> KBS는 수신료의 가치를</li>
+            </ul>
+        </div>
+        <div id="div3">
+            <button onclick="inputListItem()">기사등록하기</button>
+        </div>
+    </div>
+</body>
+</html>

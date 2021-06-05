@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+
+        function inputText() {
+            var text;
+            while (true) {
+                text = prompt("입력해주세요");
+                if ((text != "") && (text != null)) {
+                    break;
+                }
+                if ((text == "") || (text == null)) {
+                    alert("텍스트 값을 입력해주세요")
+                }
+            }
+            document.write(text);
+        };
+
+        $(function () {
+            $("#red").on("click", function () {
+                alert("빨강색으로 변경됩니다.");
+                $("#text").css("color", "red");
+            });
+
+            $("#blue").on("click", function () {
+                alert("파랑색으로 변경됩니다.");
+                $("#text").css("color", "blue");
+            });
+
+            $("#green").on("click", function () {
+                alert("초록색으로 변경됩니다.");
+                $("#text").css("color", "green");
+            });
+
+        });
+
+        function colorChange(tag) {
+            let color = $(tag).attr("id");
+            $("#text").css("color", color);
+        }
+
+    </script>
+    <style>
+        #container {
+            text-align: center;
+        }
+
+        #text {
+            padding-top: 20%;
+            padding-bottom: 20px;
+            font-size: 100px;
+        }
+
+        ul {
+            list-style: none;
+            text-align: center;
+            padding-bottom: 30%;
+        }
+
+        ul li {
+            display: inline;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <p id="text">
+            <script>
+                inputText();
+            </script>
+        </p>
+        <ul>
+            <li><button id="red" onclick="colorChange(this)">빨강색</button></li>
+            <li><button id="blue" onclick="colorChange(this)">파랑색</button></li>
+            <li><button id="green" onclick="colorChange(this)">초록색</button></li>
+        </ul>
+    </div>
+</body>
+
+</html>

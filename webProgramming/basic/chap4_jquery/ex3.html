@@ -1,0 +1,63 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("#menu1").on("click",function(){
+            $("#menu2").css("color", "white");
+            $("#menu2").css("background-color", "darkgray");
+            $("#menu3").css("color", "white");
+            $("#menu3").css("background-color", "darkgray");
+
+            $("#menu1").css("color", "black");
+            $("#menu1").css("background-color", "white"); 
+            });
+
+            $("#menu2").on("click",function(){
+            $("#menu1").css("color", "white");
+            $("#menu1").css("background-color", "darkgray");
+            $("#menu3").css("color", "white");
+            $("#menu3").css("background-color", "darkgray");
+
+            $("#menu2").css("color", "black");
+            $("#menu2").css("background-color", "white"); 
+            });
+
+            $("#menu3").on("click",function(){
+            $("#menu1").css("color", "white");
+            $("#menu1").css("background-color", "darkgray");
+            $("#menu2").css("color", "white");
+            $("#menu2").css("background-color", "darkgray");
+
+            $("#menu3").css("color", "black");
+            $("#menu3").css("background-color", "white"); 
+            });
+        });
+
+    </script>
+    <style>
+        #container {
+            display: flex;
+            align-items: center;
+        }
+
+        #menu1, #menu2, #menu3 {
+            width: 100px;
+            height: 30px;
+            background-color: darkgray;
+            color: white;
+            border: 1px solid black;
+            margin-right: 16px;
+            text-align: center;
+            line-height: 180%;
+        }
+    </style>
+</head>
+<body>
+    <div id='container'>
+        <div id='menu1'>HTML</div>
+        <div id='menu2'>CSS</div>
+        <div id='menu3'>javascript</div>
+    </div>
+</body>
+</html>
