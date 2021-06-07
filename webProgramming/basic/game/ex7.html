@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid black;
+            background: url("image/bg.jpg");
+        }
+
+        #bob {
+            position: absolute;
+            left: 50px;
+            bottom: 50px;
+            width: 300px;
+            height: 200px;
+        }
+
+        #ping {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            right: 0px;
+            bottom: 0px;
+        }
+
+        #hamberger {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            bottom: 50px;
+            right: 200px;
+        }
+
+        #lose {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 100px;
+        }
+
+        #life {
+            display: inline;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            display: inline;
+        }
+
+        #star {
+            margin-top: 50px;
+            margin-left: 50px;
+            width: 80px;
+            height: 80px;
+        }
+
+        #start {
+            margin-left: 33%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <ul id="lifeList">
+            <li><img id="star" src="image/star.png" alt=""></li>
+            <li><img id="star" src="image/star.png" alt=""></li>
+            <li><img id="star" src="image/star.png" alt=""></li>
+        </ul>
+        <img id="start" src="image/start.png" alt="" onclick="start()">
+        <img id="bob" src="image/people.gif" alt="">
+        <img id="ping" src="image/pingping.gif" alt="">
+        <img id="hamberger" src="image/hamberger.gif" alt="">
+    </div>
+</body>
+<script>
+    $(function () {
+        clearInterval(interval);
+    });
+
+    var life = 3;
+
+    let isJumping = false;
+    //주인공 점프
+    function jump() {
+        isJumping = true;
+        let bob = $("#bob");
+        bob.animate({
+            bottom: "+=300px"
+        }).animate({
+            bottom: "-=300px"
+        }, function () {
+            isJumping = false;
+        });
+    }
+
+    //스페이스바 누르면 점프
+    $("body").keydown(function (event) {
+        switch (event.code) {
+            case "Space":
+                //스페이스 연타방지
+                if (isJumping == false) {
+                    jump();
+                }
+                break;
+        }
+    });
+
+    function enemyMove() {
+        var randTime = Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+        $("#ping").animate({
+            right: "120%"
+        }, randTime, function () {
+            $("#ping").css("right", "-100px");
+        });
+    }
+
+    function deadCheck() {
+        let isDead = false;
+        let bob = $("#bob");
+        let enemy = $("#ping");
+        let bobRightX = parseInt(bob.css("left").replace("px", "")) + 100;
+        let enemyLeftX = parseInt(enemy.css("left").replace("px", ""));
+        let bobY = parseInt(bob.css("bottom").replace("px", ""));
+        let enemyY = parseInt(enemy.css("bottom").replace("px", "") +
+            enemy.css("height").replace("px", "")
+        );
+
+        if ((bobRightX > enemyLeftX) && (bobY < enemyY) && (enemyLeftX > 50)) {
+            isDead = true;
+        }
+        return isDead;
+    }
+
+   
+    var interval = null;
+    //시작버튼
+    function start() {
+        $("#start").remove();
+        //대략 30frame 화면 갱신
+            interval = setInterval(function () {
+            //적 이동
+            enemyMove();
+            if (life == 0) {
+                stop();
+            }
+            //죽었는지 확인
+            if (deadCheck()) {
+                life--;
+                $("#lifeList li").last().remove();
+                alert("스펀지밥이 죽었습니다. \n목숨이 " + life + "개 남았습니다");
+            };
+        }, 30);
+    }
+
+     // 최종종료
+     function stop() {
+        clearInterval(interval);
+        $("#bob").attr("src", "image/people2.gif");
+        $("#ping").remove();
+        $("#container").append("<div id='lose'><img src='image/fail.png' ></div>");
+    }
+
+</script>
+
+</html>
