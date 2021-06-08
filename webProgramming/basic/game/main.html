@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        #container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 1px solid black;
+            background: url("image/bg.jpg");
+        }
+
+        #bob {
+            position: absolute;
+            left: 50px;
+            bottom: 50px;
+            width: 300px;
+            height: 200px;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <img id="bob" src="image/people.gif" alt="">
+    </div>
+</body>
+<script>
+
+    var isAnimationg = false;
+    //주인공 이동
+    function updatePosition(item, position) {
+        if (isAnimationg == false) {
+            isAnimationg = true;
+            item.animate(position, function () {
+                isAnimationg = false;
+            });
+        }
+    }
+
+    //스페이스바 누르면 점프
+    $("body").keydown(function (event) {
+        switch (event.code) {
+            case "ArrowDown":
+                updatePosition($("#bob"), {
+                    top: "+=50px"
+                });
+                break;
+
+            case "ArrowUp":
+                updatePosition($("#bob"), {
+                    top: "-=50px"
+                });
+                break;
+
+            case "ArrowLeft":
+                updatePosition($("#bob"), {
+                    left: "-=100px"
+                });
+
+                break;
+
+            case "ArrowRight":
+                updatePosition($("#bob"), {
+                    left: "+=100px"
+                });
+                break;
+            case "Enter":
+                let bob = $("#bob");
+                let bobX = parseInt(bob.css("left").replace("px", ""));
+                let bobY = parseInt(bob.css("bottom").replace("px", ""));
+                // alert(bobX+"=="+bobY);
+                if(bobX==1350 && bobY==50){
+                    location.href='game1.html';
+                }
+                // if((bobX==850 && bobY==50) || (bobX==750 && bobY==50)){
+                //     location.href='ex9.html';
+                // }
+                break;
+        }
+    });
+
+
+</script>
+
+</html>
