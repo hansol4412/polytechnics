@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <style>
+        .post{
+            width: 80%;
+            background-color: azure;
+            margin-bottom: 20px;
+            border: 1px solid black;
+        }
+
+        .comment{
+            background-color: cornsilk;
+            margin: 20px;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function getContentAjax() {
+            $.get("https://jsonplaceholder.typicode.com/posts",
+                function (datas, status) {
+                    for (var i = 0; i < datas.length; i++) {
+                        $("#container").append("<div class='post' id ='content"+datas[i].id+"'><ul>"
+                            +"<li>userid : "+datas[i].userId+"</li>"
+                            +"<li>id : "+datas[i].id+"</li>"
+                            +"<li>"+datas[i].title+"</li>"
+                            +"<li>"+datas[i].body +"</li><br>"
+                            +"<button id='commentBtn"+datas[i].id+"' onclick='comment("+datas[i].id+")'>댓글o</button></br>"
+                            +"<div id='commentDiv"+datas[i].id+"'></div></ul></div>");
+                    };
+                });
+        }
+
+        //댓글 추가
+        function comment(id){
+            $.get("https://jsonplaceholder.typicode.com/comments?postId="+id+"",
+                function (datas, status) {
+                    var idC = "#commentDiv"+id+"";
+                    var btnC = "#commentBtn"+id+"";
+                    $(btnC).remove();
+                    $(idC).append("<button onclick='back("+id+")' id='removeBtn"+id+"'>댓글x</button>");
+
+                    for (var i = 0; i < datas.length; i++) {
+                        $(idC).append(
+                            "<div class='comment'><ul>"
+                            +"<li>"+datas[i].name+"</li>"
+                            +"<li>"+datas[i].email+"</li>"
+                            +"<li>"+datas[i].body +"</li>"
+                            + "</ul> </div>"
+                            );
+                    };
+                });
+        }
+
+        //댓글 지우기
+        function back(id){
+            var idL ="#commentDiv"+id+"";
+            var btnR ="#removeBtn"+id+"";
+            $(idL).empty();
+            $(btnR).remove();
+            $(idL).append("<button id='commentBtn"+id+"' onclick='comment("+id+")'>댓글o</button>");
+        }
+
+        $(function () {
+            getContentAjax();
+        });
+    </script>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+</body>
+
+</html>

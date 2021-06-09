@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    function clicked(postId, cardIndex) {
+      console.log(postId);
+      $.get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`, function (comments, status) {
+        // 코멘트가 표시되어 있을 때 제거
+        if ($(".comments").eq(cardIndex).html() != "") {
+          $(".comments").eq(cardIndex).html("");
+          return;
+        }
+
+        if (status == "success") {
+          // console.table(comments);
+          comments.forEach(function (comment) {
+            console.log(comment);
+            let tag = `
+            <div class="comment">
+              <span>
+                <b>${comment.name}</b>
+              </span>
+              <span>${comment.body}</span>
+            </div>`;
+
+            $(".comments").eq(cardIndex).append(tag);
+          });
+        }
+      });
+    }
+
+    $(function () {
+      $.get("https://jsonplaceholder.typicode.com/posts", function (posts, status) {
+        if (status == "success") {
+          posts.forEach(function (post, i) {
+            let card = `
+            <div class="card" onclick="clicked(${post.id}, ${i})">
+              <h4 class="title">${post.title}</h4>
+              <p class="body">${post.body}</p>
+              <div class="comments"></div>
+            </div>
+            `;
+
+            $("#container").append(card);
+          });
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .card {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      width: 40%;
+      padding: 2px 16px;
+      margin-bottom: 8px;
+    }
+
+    .comments {
+      background-color: rgb(238, 238, 238);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+
+  </div>
+</body>
+
+</html>
