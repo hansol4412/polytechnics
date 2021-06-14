@@ -3,11 +3,11 @@
 <%@ page import="java.sql.*, javax.sql.*, java.net.*, java.io.*" %>
 <html>
 <head> 
-
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Gongji view</h1>
-    <head>
+<div class="container">
+<div class="row-fluid">
     <SCRIPT LANGUAGE="JavaScript">
         function submitForm(mode) {
             if (mode == "insert") {
@@ -58,7 +58,8 @@
         ResultSet rset2 = stmt2.executeQuery("select * from reply where gongjiId="+num+";");
         ResultSet rset3 = stmt3.executeQuery("select replyId from reply where gongjiId = "+num+" order by replyId desc limit 1;");
     %>
-        <table width=650 border=1 cellspacing=0 cellpadding=5>
+        <h1 class="display-2 text-center">View</h1>
+        <table class="table">
             <%
                 while (rset.next()) {
                     out.println("<tr>");
@@ -90,8 +91,8 @@
                             while (rset2.next()) {
                                 out.println("<tr>");
                                 out.println("<td>"+rset2.getString(4)+"</td>");
-                                out.println("<td><button OnClick=checkReply('update',"+rset.getInt(1)+","+rset2.getInt(2)+",'"+rset2.getString(4)+"')>수정</button></td>");
-                                out.println("<td><button OnClick=checkReply('delete',"+rset.getInt(1)+","+rset2.getInt(2)+",'"+rset2.getString(4)+"')>삭제</button></td>");
+                                out.println("<td><button class='btn btn-success btn-sm' OnClick=checkReply('update',"+rset.getInt(1)+","+rset2.getInt(2)+",'"+rset2.getString(4)+"')>수정</button></td>");
+                                out.println("<td><button class='btn btn-success btn-sm' OnClick=checkReply('delete',"+rset.getInt(1)+","+rset2.getInt(2)+",'"+rset2.getString(4)+"')>삭제</button></td>");
                                 out.println("<td>("+rset2.getString(3)+")</td>");
                                 out.println("</tr>");
                             } 
@@ -114,7 +115,7 @@
                             int replyIdInt = Integer.parseInt(replyId) +1;
                             out.println("<input type=hidden name=replyId value="+replyIdInt+">");
                         }
-                        out.println("<input type=button value=댓글등록 OnClick=submitForm('insert')>");
+                        out.println("<input type=button value=댓글등록 class='btn btn-secondary' OnClick=submitForm('insert')>");
                         out.println("</FORM>");
 
 
@@ -130,9 +131,9 @@
         </table>
         <table width=650>
             <td width=600></td>
-            <td><input type=button value="목록" OnClick="location.href='gongji_list.jsp'"></td>
+            <td><input type=button value="목록"  class="btn btn-primary" OnClick="location.href='gongji_list.jsp'"></td>
             <%
-                out.println("<td><input type=button value='수정' OnClick=location.href='gongji_update.jsp?key="+num+"'></td>");
+                out.println("<td><input type=button value='수정'  class='btn btn-primary' OnClick=location.href='gongji_update.jsp?key="+num+"'></td>");
                
             %>
         </table>
@@ -146,5 +147,7 @@
         stmt3.close();
 		conn.close();
     %>
+    </div>
+    </div>
 </body>
 </html>
