@@ -23,13 +23,27 @@
      <% 
         Date date = new Date();
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+
+        //페이징 처리
+        String _start = request.getParameter("start");
+
+        int start;
+        int cnt =10;
+
+        if(_start == null){
+            start = 0;
+        } else {
+            start = Integer.parseInt(_start);
+        }
+    
     %>
     <% 
         Class.forName ("com.mysql.cj.jdbc.Driver");  
 	    Connection conn = DriverManager.getConnection ("jdbc:mysql://localhost/kopo41", "root", "kopo41"); 
 	    Statement stmt = conn.createStatement(); 
         Statement stmt1 = conn.createStatement();
-        ResultSet rset = stmt.executeQuery("select id, title, date, viewcnt from gongji order by id desc;");
+        Statement stmt2 = conn.createStatement();
+        ResultSet rset = stmt.executeQuery("select id, title, date, viewcnt from gongji order by id desc limit "+start+","+cnt+";");
         
     %>
         <div class="float-end">
@@ -103,12 +117,34 @@
                     </div>
                 <form>
     </div>
+
+            
+	<%  
+        ResultSet rset2 = stmt2.executeQuery("select count(*) from gongji;");
+        int totalPage = 0;
+        if(rset2.next()){
+            totalPage = rset2.getInt(1);
+        }
+
+        totalPage = (int)(totalPage / 10) + 1;
+            out.println("<a class='btn btn-outline-primary' href=gongji_list.jsp?start=0>&lt;&lt;</a>");
+
+		for(int i = 1; i <= totalPage; i++) {
+		    out.println("<a class='btn btn-outline-primary' href=gongji_list.jsp?start="+(i-1) * cnt+">"+i+"</a>");
+		}
+            out.println("<a class='btn btn-outline-primary' href=gongji_list.jsp?start="+((totalPage-1)*cnt)+">&gt;&gt;</a>");
+			    
+    %>
+    
+    
     <div>
     <div>
     
     <%
         rset.close(); 
 		stmt.close(); 
+        rset2.close(); 
+		stmt2.close(); 
         stmt1.close(); 
 		conn.close();
     %>
