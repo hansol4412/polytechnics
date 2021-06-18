@@ -46,7 +46,7 @@ public class NewsData {
 		
 		Page pagelist = new Page();
 
-		for (int j = 4; j < pagelist.pagelist.length; j++) {
+		for (int j = 40; j < pagelist.pagelist.length; j++) {
 			
 			base_url = pagelist.pagelist[j][1];
 
@@ -55,6 +55,7 @@ public class NewsData {
 
 			int newsPage = 0;
 			
+			/*
 			for(int i =1; i<15; i++) {
 				try {
 					if(driver.findElement(By.xpath("/html/body/div[2]/article/header/div[3]/form/ul/li["+i+"]/a")).getText().equals("대학소개")||
@@ -94,7 +95,16 @@ public class NewsData {
 			driver.findElement(By.xpath("/html/body/div[2]/article/header/div[3]/form/ul/li[" + newsPage+ "]/div/ul/li[4]/ul/li[" + newPage2 + "]/a")).click();
 										 ///html/body/div[2]/article/header/div[3]/form/ul/li[8]/				div/ul/li[5]/ul/li[2]/a
 			Thread.sleep(300);
+			*/
+			
+			try {
+				driver.findElement(By.xpath("/html/body/div[2]/article/div[1]/div/div[2]/section/div[1]/div[2]/a")).click();
+			}catch(org.openqa.selenium.NoSuchElementException e) {
+				driver.findElement(By.xpath("/html/body/div[2]/article/div[2]/div/div[2]/section/div[1]/div[2]/a")).click();
+				
+			}
 
+			Thread.sleep(300);
 			String str = null;
 
 			int page = 0;
