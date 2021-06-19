@@ -46,7 +46,7 @@ public class NewsData {
 		
 		Page pagelist = new Page();
 
-		for (int j = 40; j < pagelist.pagelist.length; j++) {
+		for (int j = 2; j <=2 /*pagelist.pagelist.length*/; j++) {
 			
 			base_url = pagelist.pagelist[j][1];
 
@@ -108,8 +108,7 @@ public class NewsData {
 			String str = null;
 
 			int page = 0;
-
-			driver.findElement(By.xpath("/html/body/div[2]/article/div[1]/section[2]/div/div[3]/div[2]/a[10]")).click(); // 처음페이지에서 들어가면 규칙성 안맞음 한번 다른데 찍고 넘어가기
+			driver.findElement(By.xpath("/html/body/div[2]/article/div[1]/section[2]/div/div[3]/div[2]/a[5]")).click(); // 처음페이지에서 들어가면 규칙성 안맞음 한번 다른데 찍고 넘어가기
 			loop: while (true) {
 				try {
 					for (int p = 4; p <= 13; p++) {
@@ -157,3 +156,5 @@ public class NewsData {
 	}
 
 }
+
+
