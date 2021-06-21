@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class NewsData {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		try {
 			NewsData newsData = new NewsData();
 		} catch (InterruptedException e) {
@@ -31,8 +31,11 @@ public class NewsData {
 	// 크롤링 할 URL
 	private String base_url;
 
-	public NewsData() throws InterruptedException {
+	public NewsData() throws InterruptedException, IOException {
 		super();
+		
+		File file = new File("news.csv");
+    	BufferedWriter writeF = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("news.csv",true), "euc-kr"));
 
 		// System Property SetUp
 		System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
@@ -46,7 +49,7 @@ public class NewsData {
 		
 		Page pagelist = new Page();
 
-		for (int j = 2; j <=2 /*pagelist.pagelist.length*/; j++) {
+		for (int j = 0; j <pagelist.pagelist.length; j++) {
 			
 			base_url = pagelist.pagelist[j][1];
 
@@ -138,7 +141,7 @@ public class NewsData {
 
 								str = pagelist.pagelist[j][0]+"," + title + "," + date + "\n";
 								System.out.print(str);
-								// writeF.write(str);
+								 writeF.write(str);
 							}
 						} catch (org.openqa.selenium.NoSuchElementException e) {
 							break loop;
@@ -152,6 +155,8 @@ public class NewsData {
 				}
 			}
 		}
+		
+		writeF.close();
 
 	}
 

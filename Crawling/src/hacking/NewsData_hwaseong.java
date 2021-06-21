@@ -1,12 +1,18 @@
 package hacking;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class NewsData_hwaseong {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 		try {
 			NewsData_hwaseong newsData_hwaseong = new NewsData_hwaseong();
 		} catch (InterruptedException e) {
@@ -22,11 +28,13 @@ public class NewsData_hwaseong {
 	public static final String WEB_DRIVER_ID = "webdriver.chrome.driver";
 	public static final String WEB_DRIVER_PATH = "C:\\web\\chromedriver.exe";
 
-	// ÌÅ¨Î°§ÎßÅ Ìï† URL
+	// ≈©∑—∏µ «“ URL
 	private String base_url;
 
-	public NewsData_hwaseong() throws InterruptedException {
+	public NewsData_hwaseong() throws InterruptedException , IOException{
 		super();
+		File file = new File("news.csv");
+    	BufferedWriter writeF = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("news.csv",true), "euc-kr"));
 
 		// System Property SetUp
 		System.setProperty(WEB_DRIVER_ID, WEB_DRIVER_PATH);
@@ -75,9 +83,9 @@ public class NewsData_hwaseong {
 								title = title.replaceAll(",", "/");
 							}
 
-							str = "ÌôîÏÑ±Ï∫†ÌçºÏä§"+"," + title + "," + date + "\n";
+							str = "»≠º∫ƒ∑∆€Ω∫"+"," + title + "," + date + "\n";
 							System.out.print(str);
-							// writeF.write(str);
+							 writeF.write(str);
 						}
 					} catch (org.openqa.selenium.NoSuchElementException e) {
 						break loop;
@@ -89,6 +97,7 @@ public class NewsData_hwaseong {
 				break;
 			}
 		}
+		writeF.close();
 	}
 
 }
