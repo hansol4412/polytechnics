@@ -75,8 +75,8 @@ public class NewsData_robot {
 							if (title.contains(",")) {
 								title = title.replaceAll(",", "/");
 							}
-
-							str = "·Îº¿Ä·ÆÛ½º" + "," + title + "," + date + "\n";
+							String pageURL = driver.findElement(By.xpath("/html/body/div[2]/article/div[1]/section[2]/div/div[3]/form/table/tbody/tr[" + i + "]/td[2]/span/a")).getAttribute("href");
+							str = "·Îº¿Ä·ÆÛ½º" + "," + title + "," + date + "," + pageURL + "\n";
 							System.out.print(str);
 							 writeF.write(str);
 						}

@@ -76,8 +76,8 @@ public class NewsData_yeongju {
 							if (title.contains(",")) {
 								title = title.replaceAll(",", "/");
 							}
-
-							str = "영주캠퍼스" + "," + title + "," + date + "\n";
+							String pageURL = driver.findElement(By.xpath("/html/body/div[2]/article/div[1]/section[2]/div/div[3]/form/table/tbody/tr[" + i + "]/td[2]/span/a")).getAttribute("href");
+							str = "영주캠퍼스" + "," + title + "," + date + "," + pageURL + "\n";
 							System.out.print(str);
 							 writeF.write(str);
 						}

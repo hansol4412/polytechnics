@@ -128,8 +128,7 @@ public class NewsData {
 						try {
 							for (int i = 1; i <= 10; i++) {
 								String title = driver.findElement(By.xpath(
-										"/html/body/div[2]/article/div[1]/section[2]/div/div[3]/form/table/tbody/tr["
-												+ i + "]/td[2]"))
+										"/html/body/div[2]/article/div[1]/section[2]/div/div[3]/form/table/tbody/tr["+ i + "]/td[2]"))
 										.getText();
 								String date = driver.findElement(By.xpath(
 										"/html/body/div[2]/article/div[1]/section[2]/div/div[3]/form/table/tbody/tr["
@@ -138,8 +137,8 @@ public class NewsData {
 								if (title.contains(",")) {
 									title = title.replaceAll(",", "/");
 								}
-
-								str = pagelist.pagelist[j][0]+"," + title + "," + date + "\n";
+								String pageURL = driver.findElement(By.xpath("/html/body/div[2]/article/div[1]/section[2]/div/div[3]/form/table/tbody/tr[" + i + "]/td[2]/span/a")).getAttribute("href");
+								str = pagelist.pagelist[j][0]+"," + title + "," + date + "," + pageURL + "\n";
 								System.out.print(str);
 								 writeF.write(str);
 							}
