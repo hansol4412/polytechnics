@@ -41,13 +41,27 @@ public class SeleniumTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("headless");
 
-        base_url = "https://www.kopo.ac.kr/ctc/index.do";
+        base_url = "http://192.168.23.84:8080/ch7/";
         
         driver.get(base_url);
         Thread.sleep(2000);
         
-        driver.findElement(By.xpath("/html/body/div[2]/article/header/div[1]/ul/li[2]/a")).click();
+        driver.findElement(By.xpath("/html/body/div/span/button")).click();
         Thread.sleep(1000);
+        
+        driver.findElement(By.xpath("/html/body/form/span/button[2]")).click();
+        Thread.sleep(1000);
+        
+        
+        driver.findElement(By.xpath("/html/body/form/span/table/tbody/tr[2]/td[2]/input")).sendKeys("馬馬馬");
+        Thread.sleep(1000);
+        
+        driver.findElement(By.xpath("/html/body/form/span/table/tbody/tr[4]/td[2]/textarea")).sendKeys("馬馬馬");
+        Thread.sleep(1000);
+        
+        driver.findElement(By.xpath("/html/body/form/span/input[1]")).click();
+        Thread.sleep(1000);
+
         
         
     }
